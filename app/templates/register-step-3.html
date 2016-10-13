@@ -1,0 +1,109 @@
+{% extends "__base_new__.html" %}
+
+{% block title %}
+  {{ gettext('My Expertise') }}
+  {% if question %}
+    - {{ question.questionnaire.name }} #{{ questionid }}
+  {% endif %}
+{% endblock %}
+
+{% block page_style_pre %}
+  {# This is a placeholder until we fix #115. #}
+  <style>
+    html, body {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+  </style>
+{% endblock %}
+
+{% macro render_background_cards(height_target) %}
+  {% for i in range(questions_left) %}
+  <div class="e-card" data-set-height-to="{{ height_target }}"><h3 class="e-card-category">&nbsp;</h3></div>
+  {% endfor %}
+{% endmacro %}
+
+{% block content %}
+
+{% if not question %}
+{% if not next_url %}
+<div class="b-onboarding m-signup-first-category">
+    <section>
+        <div class="e-confirmed material-icons">check</div>
+        <p class="e-onboarding-message">{{ gettext("Pick an innovation area that you're interested in:") }}</p>
+	<div class="e-category-menu">
+            {% for questionnaire in QUESTIONNAIRES %}
+                {% if questionnaire.questions %}
+                    <a href="{{ url_for('views.register_step_3_area', areaid=questionnaire.id) }}" class="e-category">{{ gettext(questionnaire.name) }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    <footer>
+        <div class="e-signup-progress">
+            <span></span>
+            <span></span>
+            <span class="m-current"></span>
+        </div>
+    </footer>
+</div>
+{% else %}
+
+<div class="b-onboarding-questions">
+    <div class="e-card m-intro" id="card">
+      <h3 class="e-card-category">{{ gettext(QUESTIONNAIRES_BY_ID[areaid].name) }}</h3>
+      <p class="e-text"><em>{{ gettext(QUESTIONNAIRES_BY_ID[areaid].description) }}</em></p>
+      <p class="e-text">{{ gettext("Now answer %(num)s questions about your experience in this area to join the network and get matched with other innovators!", num=MIN_QUESTIONS_TO_JOIN) }}</p>
+      <p class="e-aux-text">{{ gettext("You can always answer more questions by going to your profile page to get new and more relevant matches.") }}</p>
+      <a href="{{ next_url }}" class="b-button">{{ gettext('Next') }}</a>
+    </div>
+
+    {{ render_background_cards(height_target="#card") }}
+</div>
+
+{% endif %}
+
+{% else %}
+
+<div class="b-onboarding-questions">
+    <div class="e-card" id="card">
+        <h3 class="e-card-category">{{ gettext(question.questionnaire.name) }} {{ questionid }}</h3>
+	<p class="e-question">{{ gettext(question.question) }}</p>
+
+	<form method="post">
+	    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
+            {% for k, v in LEVELS|dictsort %}
+	        <button type="submit" name="answer" value="{{ v.score }}" class="b-button {{ v.class }}">
+                    {{ gettext(v.label) }}
+                </button>
+            {% endfor %}
+
+{% if next_questionid %}
+    <a href="{{ url_for('views.register_step_3_area_question', areaid=areaid, questionid=next_questionid) }}" class="b-button m-skip">{{ gettext('Skip this question') }}</a>
+{% endif %}
+
+
+
+
+		<div>
+		    {% if user_can_join %}
+		        <a class="b-button m-join" href="{{ url_for('views.activity') }}">{{ gettext('Join') }}</a>
+		    {% else %}
+			{{ gettext("You must answer at least %d more question(s) to join." % questions_left) }}
+		    {% endif %}
+		</div>
+
+    <a href="{{ url_for('views.register_step_3') }}" class="e-choose-another">{{ gettext('Choose another area') }}</a>
+	</form>
+
+    </div>
+
+    {{ render_background_cards(height_target="#card") }}
+</div>
+
+{% endif %}
+
+{% endblock %}
+
+{% block page_script %}
+<script src="{{ url_for('static', filename='js/pages/register-step-3.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "style-guide/base_ui.html" %}
+
+{% block title %}Tabs Example{% endblock %}
+
+{% from "_macros.html" import render_tab_bar, render_tab_panel %}
+
+{% set tabs = [
+  ('tab1', 'Tab 1'),
+  ('tab2', 'Tab 2'),
+] %}
+
+{% set active_tab = active_tab|default(tabs[0][0]) %}
+
+{% block content %}
+{{ render_tab_bar(tabs, active_tab) }}
+
+<div>
+  {% call render_tab_panel('tab1', active_tab) %}
+    <p>We use Bootstrap's <a target="_blank" href="http://getbootstrap.com/javascript/#tabs">tab plugin</a> for tabs.</p>
+  {% endcall %}
+
+  {% call render_tab_panel('tab2', active_tab) %}
+    <p>I am tab 2.</p>
+  {% endcall %}
+</div>
+
+{% endblock %}

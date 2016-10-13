@@ -4,39 +4,85 @@ NoI manage.py
 Scripts to run the server and perform maintenance operations
 '''
 
-from app import mail, models, LEVELS, ORG_TYPES
-from app.factory import create_app
-from app.models import db, User, UserSkill
+import os
+import sys
+
+if os.environ.get('RUNNING_IN_DOCKER') != 'yup':
+    # Assume the user wants to run us in docker.
+    os.execvp('docker-compose', [
+        'docker-compose', 'run', 'app', 'python'
+    ] + sys.argv)
+
+from app import (mail, models, sass, email_errors, LEVELS, ORG_TYPES, stats,
+                 questionnaires, blog_posts, linkedin, slack)
+from app.factory import create_app, YML_FILENAMES
+from app.models import db, User
 from app.utils import csv_reader
+from app.tests.factories import UserFactory
+from app.noi1 import Noi1Command
+from app.discourse.management import DiscourseCommand
 
 from flask_alchemydumps import AlchemyDumps, AlchemyDumpsCommand
 from flask_migrate import Migrate, MigrateCommand
-from flask_script import Manager
-from flask_security.utils import encrypt_password
+from flask_script import Manager, prompt_bool
+from flask_mail import Message
 from flask_security.recoverable import send_reset_password_instructions
+from flask.ext.script import Command
+from flask.ext.script.commands import InvalidCommand, Server, Shell
 
 from random import choice
 from sqlalchemy.exc import IntegrityError
 
 import codecs
-import json
-import os
 import string
 import subprocess
+import pprint
+import functools
 import yaml
 
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 app = create_app() #pylint: disable=invalid-name
 migrate = Migrate(app, db) #pylint: disable=invalid-name
 
-manager = Manager(app) #pylint: disable=invalid-name
+manager = Manager(app, with_default_commands=False)
 
+manager.add_command('shell', Shell())
+manager.add_command('runserver', Server(extra_files=YML_FILENAMES))
+
+manager.add_command('discourse', DiscourseCommand)
+manager.add_command('noi1', Noi1Command)
 manager.add_command('db', MigrateCommand)
+manager.add_command('slack', slack.SlackCommand)
 #manager.add_command("assets", ManageAssets)
 
 alchemydumps = AlchemyDumps(app, db)
 manager.add_command('alchemydumps', AlchemyDumpsCommand)
 
+
+def development_only(fn):
+    '''
+    Designate a command for being intended for use in development mode
+    only. If we're not in development mode, we'll prompt the user to
+    continue the operation.
+    '''
+
+    DEV_ENVIRONMENT = 'development'
+    NOI_ENVIRONMENT = os.environ['NOI_ENVIRONMENT']
+
+    @functools.wraps(fn)
+    def wrapper(*args, **kwargs):
+        if NOI_ENVIRONMENT != DEV_ENVIRONMENT:
+            print (
+                "WARNING: The '%s' command was designed for use *only* in \n"
+                "%s mode, but you seem to be in %s mode."
+            ) % (fn.__name__, DEV_ENVIRONMENT, NOI_ENVIRONMENT)
+            if not prompt_bool("Are you sure you want to proceed?"):
+                print "Aborting operation."
+                return
+        fn(*args, **kwargs)
+
+    return wrapper
 
 def gettext_for(text):
     '''
@@ -51,6 +97,16 @@ def _make_context():
     Add certain variables to context for shell
     '''
     return dict(app=app, db=db, mail=mail, models=models)
+
+
+@manager.command
+def getstats():
+    """
+    Generate statistics about the current deployment.
+    """
+
+    import json
+    print json.dumps(stats.generate(), sort_keys=True, indent=2)
 
 
 @manager.command
@@ -71,6 +127,33 @@ def translate_compile():
         subprocess.check_call('pybabel compile -f -l {locale} -d /noi/app/translations/'.format(
             locale=locale), shell=True)
 
+
+@manager.command
+def send_test_email(recipient):
+    """
+    Send a test email to the given recipient.
+    """
+
+    msg = Message(
+        'Test Email',
+        sender=app.config['SECURITY_EMAIL_SENDER'],
+        recipients=[recipient]
+    )
+    msg.body = "Looks like sending email works!"
+    mail = app.extensions.get('mail')
+    mail.send(msg)
+
+
+@manager.command
+def test_email_error_reporting():
+    """
+    Test email error reporting by logging an exception.
+    """
+
+    try:
+        1/0
+    except:
+        app.logger.exception("This is a test of application error reporting.")
 
 @manager.command
 def translate():
@@ -135,7 +218,20 @@ def translate():
 
 
 @manager.command
+def wait_for_db():
+    """
+    Wait for the database to be ready.
+    """
+
+    from app.tests.test_models import wait_until_db_is_ready
+
+    print "Waiting for database to be ready..."
+    wait_until_db_is_ready()
+    print "Database is ready!"
+
+@manager.command
 @manager.option('-v', '--verbose', dest='verbose', default=False)
+@development_only
 def drop_db(verbose=False):
     """
     Drops database
@@ -154,7 +250,6 @@ def drop_db(verbose=False):
     return 0
 
 
-@manager.command
 def add_fake_users(users_csv):
     """
     Add a bunch of fake users from a CSV.  Will set bogus passwords for them.
@@ -195,28 +290,102 @@ def send_bulk_password_reset_links(users_csv):
 
 
 @manager.command
-def populate_db():
+@manager.option('-c', '--count', dest='count', default=100)
+@development_only
+def populate_db(count=50):
     """
-    Populate DB from fixture data
+    Populate DB with random data.
     """
-    fixture_data = json.load(open('/noi/fixtures/sample_users.json', 'r'))
-    for i, user_data in enumerate(fixture_data):
-        skills = user_data.pop('skills')
-        user = User(password=encrypt_password('foobar'), active=True, **user_data)
-        for name, level in skills.iteritems():
-            skill = UserSkill(name=name, level=level)
-            user.skills.append(skill)
-            db.session.add(skill)
-        db.session.add(user)
-        try:
-            db.session.commit()
-        except IntegrityError:
-            app.logger.debug("Could not add user %s", user_data['email'])
-            db.session.rollback()
+    UserFactory.create_batch(int(count))
+    db.session.commit()
     return 0
 
+@manager.command
+def show_db_create_table_sql():
+    from app.tests.test_models import get_postgres_create_table_sql
+
+    print get_postgres_create_table_sql()
+
+@manager.command
+def refresh_linkedin_info(email):
+    """
+    Refresh and display LinkedIn information for a user.
+    """
+
+    user = User.query_in_deployment().filter_by(email=email).one()
+    if linkedin.retrieve_access_token(user) is None:
+        raise InvalidCommand(
+            'The user must first (re)connect to LinkedIn on the website.'
+        )
+    linkedin.update_user_info(user)
+    pprint.pprint(user.linkedin.user_info)
+
+@manager.command
+def show_blog_posts():
+    """
+    Show recent blog posts from BLOG_POSTS_RSS_URL.
+    """
+
+    summ = blog_posts.get_and_summarize(app.config['BLOG_POSTS_RSS_URL'])
+    pprint.pprint(summ)
+
+@manager.command
+def build_sass():
+    """
+    Build SASS files.
+    """
+
+    print "Building SASS files..."
+    sass.build_files()
+    print "Done. Built SASS files are in app/%s." % sass.CSS_DIR
+    return 0
+
+class RunTests(Command):
+    '''
+    Run unit tests via py.test.
+    '''
+
+    # We want py.test to handle --help, not Flask-Script.
+    help_args = tuple()
+
+    # http://stackoverflow.com/a/35318409/2422398
+    capture_all_args = True
+
+    def run(self, args):
+        # TODO: We actually might want to run py.test in a subprocess,
+        # because right now we are actually in the deployment's Flask
+        # application context, which introduces unpredictability and
+        # could cause some tests to behave differently than they would
+        # if run directly from py.test.
+
+        import pytest
+
+        sys.argv[0] = sys.argv[0] + ' test'
+
+        raise SystemExit(pytest.main(args))
+
+manager.add_command('test', RunTests())
+
+@manager.command
+@manager.option('-f', '--from', dest='from_yaml')
+@manager.option('-t', '--to', dest='to_yaml')
+def generate_question_id_migration(from_yaml, to_yaml):
+    """
+    Generate an Alembic migration script for YAML question id changes.
+    """
+
+    from_yaml = os.path.normpath(os.path.join(ROOT_DIR, from_yaml))
+    to_yaml = os.path.normpath(os.path.join(ROOT_DIR, to_yaml))
+    from_q = questionnaires.Questionnaires(yaml.load(open(from_yaml)))
+    to_q = questionnaires.Questionnaires(yaml.load(open(to_yaml)))
+    print from_q.generate_question_id_migration_script(to_q)
 
 
 if __name__ == '__main__':
-    subprocess.call('../symlink-hooks.sh', shell=True)
-    manager.run()
+    if os.path.exists('../symlink-hooks.sh'):
+        subprocess.call('../symlink-hooks.sh', shell=True)
+    try:
+        manager.run()
+    except InvalidCommand as err:
+        sys.stderr.write(str(err) + '\n')
+        sys.exit(1)

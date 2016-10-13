@@ -1,0 +1,107 @@
+{% extends "__base_new__.html" %}
+
+{% from "_macros.html" import get_user_avatar_url %}
+
+{% block header %}
+<header class="b-navigation">
+    <section class="e-top-bar">
+        <h1 class="e-logo">{{ gettext('Network of Innovators') }}</h1>
+        <div class="e-user-utils">
+          {% if current_user.is_authenticated() %}
+            {% if not DISCOURSE_ENABLED %}
+            <a href="#post-a-message" data-toggle="modal"><span class="e-post material-icons">chat</span></a>
+            {% endif %}
+            <a href="#profile-summary" data-toggle="modal"><img class="e-user-picture" data-tutorial-target="4" src="{{ get_user_avatar_url(current_user) }}"></a>
+          {% else %}
+            <a href="{{ url_for('views.about_page') }}"><span class="e-post material-icons">info</span></a>
+            <a href="{{ url_for_security('login') }}"><span class="e-post material-icons">account_circle</span></a>
+          {% endif %}
+        </div>
+    </section>
+    <nav class="e-main-nav">
+            <a href="{{ url_for('views.activity') }}" class="e-nav-item {% if 'views.activity' in request.endpoint  %}m-active{% endif %}">
+                <span class="material-icons">home</span>
+                {{ gettext('Home') }}
+            </a>
+            <a href="{{ url_for('views.match') }}" class="e-nav-item {% if 'views.match' in request.endpoint  %}m-active{% endif %}" data-tutorial-target="1">
+                <span class="material-icons">group</span>
+                {{ gettext('Match Me') }}
+            </a>
+            <a href="{{ url_for('views.search') }}" class="e-nav-item {% if 'views.search' in request.endpoint  %}m-active{% endif %}" data-tutorial-target="2">
+                <span class="material-icons">search</span>
+                {{ gettext('Find Innovators') }}
+            </a>
+            {% if DISCOURSE_ENABLED %}
+            <a href="{{ discourse_url('/') }}" class="e-nav-item" data-tutorial-target="3">
+                <span class="material-icons">chat</span>
+                {{ gettext('Discuss') }}
+            </a>
+            {% else %}
+            <a href="{{ url_for('views.feedback') }}" class="e-nav-item {% if 'views.feedback' in request.endpoint  %}m-active{% endif %}">
+                <span class="material-icons">chat</span>
+                {{ gettext('Share Feedback') }}
+            </a>
+            {% endif %}
+            <a href="{{ url_for('views.network') }}" class="e-nav-item {% if 'views.network' in request.endpoint  %}m-active{% endif %}">
+                <span class="material-icons">language</span>
+                {{ gettext('View Network') }}
+            </a>
+    </nav>
+</header>
+
+{% if current_user.is_authenticated() %}
+<div class="modal" id="post-a-message" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+<div class="b-post-update-wrapper m-update-active">
+<div class="e-post-update">
+  <h3>{{ gettext('Post an update') }}</h3>
+  <a class="b-close-button material-icons" href="#" data-dismiss="modal">close</a>
+  <form action="{{ url_for('views.activity') }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+
+    <p><label for="post-a-message-message">{{ gettext('Have a question to pose to the whole community? Need help with a task? Ask the Network!') }}</label></p>
+    <textarea id="post-a-message-message" name="message" required placeholder="{{ gettext('Does anyone have experience with prize-backed challenges relating to increasing literacy?') }}"></textarea>
+    <button class="b-button" type="submit">{{ gettext('Send') }} <i class="material-icons">send</i></button>
+  </form>
+</div>
+</div>
+</div>
+</div>
+{% endif %}
+
+{% if current_user.is_authenticated() %}
+<div class="modal" id="profile-summary" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+<section class="b-profile-summary m-active">
+    <header>
+        <a class="b-close-button material-icons" href="#" data-dismiss="modal">close</a>
+        <a href="{{ url_for('views.get_user', userid=current_user.id) }}"><img class="e-user-picture" src="{{ get_user_avatar_url(current_user) }}" alt=""></a>
+        <h3 class="e-name">{{ current_user.full_name }}</h3>
+        <a class="e-edit-profile" href="{{ url_for('views.get_user', userid=current_user.id) }}">{{ gettext('My Profile') }}</a>
+    </header>
+
+    <section class="e-menu">
+        <a href="{{ url_for('views.my_expertise') }}">{{ gettext('Add Expertise') }}</a>
+        <a href="{{ url_for('views.settings') }}">{{ gettext('Settings') }}</a>
+        <a href="{{ url_for('views.feedback') }}">{{ gettext('Share Feedback')
+}}</a>
+        <a href="{{ url_for('views.invite') }}">{{ gettext('Invite Someone') }}</a>
+        <a href="{{ url_for('views.faq') }}">{{ gettext('FAQ') }}</a>
+        <a href="{{ url_for('views.activity') }}" class="js-reset-tutorial"><i class="material-icons">info</i> {{ gettext('View Tutorials') }}</a>
+        <a href="{{ url_for('views.about_page') }}">{{ gettext('About') }}</a>
+        <a href="{{ url_for('views.terms_and_conditions') }}">{{ gettext("Terms of Service") }}</a>
+        {% if current_user.is_admin() -%}
+        <a href="{{ url_for('admin.index') }}">{{ gettext('Admin Panel') }}</a>
+        {%- endif %}
+        <a href="{{ url_for_security('logout') }}">{{ gettext('Sign Out') }}</a>
+    </section>
+
+    <footer class="e-govlab-logo">
+
+    </footer>
+</section>
+</div>
+</div>
+{% endif %}
+
+{% endblock %}

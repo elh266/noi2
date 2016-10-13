@@ -1,0 +1,298 @@
+.b-profile-header {
+    position: relative;
+    color: $white;
+    overflow: hidden;
+    display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+    background-color: $gray-70;
+
+    .e-send {display: none;} // @Toolness - this is my hack for the button switcher.
+
+    .e-bg {
+        position: absolute;
+        z-index: -1;
+        top: -30px;
+        right: -30px;
+        left: -30px;
+        bottom: -30px;
+        background-size: cover;
+        background-position: center center;
+        -webkit-filter: blur(20px) brightness(40%);
+        -moz-filter: blur(20px) brightness(40%);
+        -o-filter: blur(20px) brightness(40%);
+        -ms-filter: blur(20px) brightness(40%);
+        filter: blur(20px) brightness(40%);
+    }
+
+    .e-left {
+        flex: 2;               /* NEW, Spec - Firefox, Chrome, Opera */
+        text-align: center;
+        padding: 20px 10px;
+
+
+        .e-picture {
+            width: 100%;
+            @include circle;
+        }
+
+        .e-edit {
+            vertical-align: middle;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 12px 9px 10px;
+            font-size: 16px;
+            @include transition;
+            .material-icons {
+                font-size: 20px;
+                vertical-align: middle;
+                padding-bottom: 4px;
+            }
+            &:hover {
+                background-color: $white-10;
+                @include transition;
+            }
+        }
+
+        .conference-logo {
+            height: 75px;
+            max-width: 100px;
+            margin: 0 auto;
+            display: block;
+        }
+    }
+
+    .e-right {
+        padding: 30px 10px 10px;
+        flex: 3;               /* NEW, Spec - Firefox, Chrome, Opera */
+
+        .e-name {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            margin: 0 0 5px 0;
+        }
+
+        .e-job {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            font-weight: 400;
+            margin: 0 0 20px 0;
+        }
+
+        .e-info {
+            padding: 0;
+
+            > li {
+                list-style: none;
+                padding-left: 36px;
+                margin: 12px 0;
+
+                > span {
+                    display: inline-block;
+                    margin-left: -36px;
+                    margin-right: 12px;
+                    vertical-align: -6px;
+                    opacity: .5;
+                }
+            }
+        }
+    }
+}
+
+.b-profile-questionnaire {
+    padding: 30px 0;
+
+    .e-questions-container {
+        white-space: nowrap;
+        width: auto;
+    }
+
+    .e-question {
+        width: calc(100% - 60px);
+        white-space: normal;
+        display: inline-block;
+        margin: 0 30px;
+    }
+
+    .e-prev,
+    .e-next {
+        color: $gray-10;
+        font-size: 42px;
+        margin-top: 3px;
+    }
+
+    .e-prev { float: left; }
+    .e-next { float: right; }
+
+    .e-question-text {
+        font-size: 22px;
+        text-align: center;
+        margin: 0 30px 40px;
+        padding: 0 20px;
+    }
+
+    .e-questionnaire-answers {
+        padding: 0 20px;
+    }
+
+    .m-start {
+        display: block;
+        width: auto;
+        margin: 0 20px;
+        color: white;
+        background-color: $blue;
+    }
+}
+
+.b-public-profile {
+
+    .e-send {display: block;} // @Toolness - this is my hack for the button switcher.
+    .e-edit {display: none;}  // @Toolness - this is my hack for the button switcher.
+
+    .e-category {
+        background-color: $blue;
+        padding: 15px;
+        font-size: 20px;
+        font-weight: 600;
+        color: $white;
+        text-transform: uppercase;
+        text-align: center;
+
+        .e-back {
+            position: absolute;
+            left: 20px;
+        }
+    }
+
+    .b-contextual-nav.m-roles {
+        background-color: $gray-20;
+
+        .e-item { color: $gray-80; }
+    }
+
+    .e-intro {
+        font-size: 20px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .e-send {
+        padding: 10px 8px 10px 12px;
+        background-color: $blue;
+        width: auto;
+        display: inline-block;
+        @include circle;
+        position: relative;
+        top: -25px;
+        box-shadow: 0 2px 5px $gray-40;
+    }
+}
+
+.b-matching-questions {
+    margin: 0;
+    padding: 0;
+
+
+    .e-question-item {
+        list-style-type: none;
+        padding: 10px 20px 20px;
+    }
+    .e-question-item:nth-of-type(odd) { background-color: $gray-05; }
+
+    .e-question-text {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .e-user-answer {
+        position: relative;
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+        // left: 25px;
+
+        img {
+            @include circle;
+            width: 50px;
+            display: block;
+            margin: 0 auto;
+            // position: absolute;
+            // left: 0;
+
+        }
+
+        a {
+            display: inline-block;
+        }
+
+        .e-user-answer-text {
+            // padding: 6px 20px 6px 30px;
+            // margin: 8px 0 10px -35px;
+            padding: 10px;
+            margin: 10px;
+            vertical-align: top;
+            display: inline-block;
+            color: $white;
+            font-size: 18px;
+
+            .material-icons {
+                padding-left: 0.5em;
+                font-size: inherit;
+                vertical-align: middle;
+            }
+        }
+
+        &.m-learn .e-user-answer-text {background-color: $orange;}
+        &.m-do .e-user-answer-text {background-color: $teal;}
+        &.m-explain .e-user-answer-text {background-color: $purple;}
+        &.m-connect .e-user-answer-text {background-color: $yellow;}
+
+    }
+}
+
+.b-roles-list {
+    padding: 10px;
+    p {
+        margin: 10px 0 10px 5px;
+        .m-explainer { color: $purple; }
+        .m-practitioner { color: $teal; }
+        .m-connector { color: $yellow; }
+        .m-peer { color: $orange; }
+    }
+
+    ul {
+        padding-left: 0;
+        margin: 12px 0;
+        li {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            list-style: none;
+            display: inline-block;
+            margin: 0 6px;
+            padding: 6px 10px;
+            color: $white;
+        }
+
+        &.m-explainer li {
+            background-color: transparentize($purple, 0.3);
+        }
+        &.m-practitioner li {
+            background-color: transparentize($teal, 0.3);
+        }
+        &.m-connector li {
+            background-color: transparentize($yellow, 0.2);
+        }
+        &.m-peer li {
+            background-color: transparentize($orange, 0.3);
+        }
+    }
+}
+
+#overview {
+  .e-user-projects {
+    white-space: pre-wrap;
+  }
+}
+

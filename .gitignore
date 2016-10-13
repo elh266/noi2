@@ -1,6 +1,8 @@
 .env
 *.pyc
 app/config/local_config.yml
+app/static/css
+app/noi1/
 *.mo
 .keys
 backups
@@ -10,3 +12,10 @@ alchemydumps
 *.log
 tmp
 translate.tmp.html
+.webassets-cache
+gen/
+.DS_Store
+docker-compose.override.yml
+.cache
+*_dump
+development.yml

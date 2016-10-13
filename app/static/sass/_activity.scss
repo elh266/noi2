@@ -1,0 +1,330 @@
+.b-contextual-nav {
+    width: 100%;
+    background-color: $gray-80;
+    padding: 0;
+    margin: 0;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    .e-menu-items {
+        padding: 0;
+        width: auto;
+        white-space: nowrap;
+        margin: 0;
+    }
+
+    .e-item {
+        list-style: none;
+        text-transform: uppercase;
+        font-weight: 400;
+        color: $white-40;
+        letter-spacing: 1px;
+        display: inline-block;
+        margin: 0;
+        padding: 20px 10%;
+        white-space: nowrap;
+        min-width: 50vw;
+        width: auto;
+        text-align: center;
+
+        @include breakpoint($tablet-up) {
+            min-width: 0;
+            padding: 20px 20px;
+        }
+
+        // Note that &.active is applied by Bootstrap's tab plugin.
+        &.m-active, &.active {
+            transform: scale(1.3);
+            color: $white-80;
+            font-weight: 600;
+            padding: 13px 10%;
+        }
+
+        &:first-child {
+            margin-left: 25vw;
+
+            @include breakpoint($tablet-up) {
+                margin-left: 0;
+            }
+        }
+        &:last-child {
+            margin-right: 25vw;
+
+            @include breakpoint($tablet-up) {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.b-scroll {
+    $buttonBg: #4F4F4F;
+    position: relative;
+    .js-scroll-btn {
+        z-index: 200;
+        color: $white-60;
+        display: inline-block;
+        position: absolute;
+        opacity: 1;
+        // pointer-events: none;
+        top: 10px;
+        width: 36px;
+        height: 36px;
+        background-color: $buttonBg;
+        border-radius: 100%;
+        text-align: center;
+        &.js-left {
+            left: 4px;
+        }
+        &.js-right {
+            right: 4px;
+        }
+        i {
+            padding-top: 4px;
+            font-size: 30px;
+        }
+        @include transition;
+        &:hover {
+            background-color: lighten($buttonBg, 10%);
+        }
+    }
+    // &:hover .js-scroll-btn {
+    //     opacity: 1;
+    //     pointer-events: auto;
+    //     @include transition;
+    // }
+    .b-contextual-nav::-webkit-scrollbar {
+        display: none;
+    }
+    .e-item:first-child {
+        padding-left: 15%;
+    }
+    .e-item:last-child {
+        padding-right: 15%;
+    }
+}
+
+// The content of contextual nav "tabs" should be contained in
+// elements with role="tabpanel"; only one of them should have .active,
+// which is managed by Bootstrap's tab plugin.
+[role="tabpanel"]:not(.active) {
+    display: none;
+}
+
+.b-activity-feed {
+
+    .e-activity-feed-container {
+        margin: 0;
+        padding: 0;
+
+        .e-feed-item:nth-of-type(even) { background-color: $gray-05; }
+    }
+
+    .e-feed-item {
+        list-style: none;
+        margin: 0;
+        padding: 15px 20px;
+        align-items: center;
+        display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+    }
+
+    .e-blog-items-container {
+       $blogItemBg: fade_out($teal, 0.9);
+       $blogItemFg: #000000;
+
+        > ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .m-blog-item {
+            border-left: 5px solid $teal;
+            background-color: $blogItemBg;
+            color: $blogItemFg;
+        }
+
+        .m-blog-item p {
+            color: $blogItemFg;
+        }
+
+        .e-actions {
+            color: mix($blogItemBg, $blogItemFg, 30);
+        }
+
+        li.m-blog-item.m-show-more-blog-items,
+        li.m-blog-item.m-show-less-blog-items {
+            text-align: center;
+            padding: 0;
+            a {
+                width: 100%;
+            }
+        }
+
+        .e-more-blog-items {
+            display: none;
+        }
+    }
+
+    time {
+        text-align: right;
+        max-width: 80px;
+        padding-left: 4px;
+        font-size: 10px;
+        color: gray;
+    }
+
+    .e-user-picture {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
+    .e-load-more {
+        padding: 20px;
+        text-align: center;
+        .material-icons {
+            font-size: 48px;
+        }
+    }
+
+    .e-discourse-category {
+        font-size: 10px;
+        padding: 2px;
+        color: gray;
+        border: 1px dotted lightgray;
+        white-space: pre;
+    }
+
+    .e-feed-item {
+
+        &:not(.m-discourse-topic) .e-feed-message {
+            flex: 1;
+        }
+
+        @include breakpoint($desktop) {
+            &.m-discourse-topic {
+                display: flex;
+                .e-feed-message {
+                    max-width: 80%;
+                    flex: 1;
+                }
+            }
+        }
+        @include breakpoint($mobile) {
+            &.m-discourse-topic {
+                display: block;
+                .e-feed-message {
+                    max-width: 100%;
+                    flex: unset;
+                }
+            }
+        }
+
+    }
+
+    .e-feed-message {
+        //max-width: 100%;
+
+
+        p, ul, ol, a {
+            margin: 10px 0;
+            word-wrap: break-word;
+        }
+
+        .e-more {
+            text-transform: uppercase;
+            color: $gray-40;
+            font-size: 14px;
+            font-weight: 600;
+
+            &:hover { color: $blue; }
+        }
+    }
+
+    .e-actions {
+        color: $gray-40;
+
+        &:hover { color: $blue; }
+
+        .e-action-label {
+            display: inline-block;
+            vertical-align: top;
+            padding-top: 4px;
+        }
+    }
+
+    .e-feed-profile {
+        font-weight: 600;
+        flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
+
+
+        p { padding: 0; }
+
+        .e-progress-bar:before {
+            content: attr(data-progress);
+            font-weight: 300;
+            font-size: 14px;
+            font-style: italic;
+            position: absolute;
+            right: 0;
+            top: -22px;
+        }
+
+        .e-progress-bar {
+            background-color: $gray-10;
+            width: 100%;
+            height: 2px;
+            position: relative;
+            top: -11px;
+        }
+
+        .e-bar {
+            background-color: $blue;
+            position: absolute;
+            left: 0;
+            height: 2px;
+        }
+
+        &.m-completed {
+            .e-bar { background-color: $green; }
+            .e-progress-bar {
+                margin-right: 30px;
+                width: auto;
+            }
+            .e-progress-bar:before {
+                color: $green;
+                font-family: 'Material Icons';
+                font-style: normal;
+                font-weight: 400;
+                content: '\E876'; // Checkmark Icon
+                font-size: 24px;
+                top: -18px;
+                right: -30px;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

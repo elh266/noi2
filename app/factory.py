@@ -5,24 +5,53 @@ Creates the app
 '''
 
 from flask import Flask, current_app
-#from flask.ext.uploads import configure_uploads
+from flask.ext.babel import get_locale
 from flask_security import SQLAlchemyUserDatastore, user_registered
 from flask_security.utils import get_identity_attributes
+from werkzeug.contrib.fixers import ProxyFix
 
-from app import (csrf, cache, mail, bcrypt, s3, assets, security,
-                 babel, celery, alchemydumps,
-                 QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID)
-from app.config.schedule import CELERYBEAT_SCHEDULE
-from app.forms import EmailRestrictRegisterForm
+from app import (csrf, cache, mail, bcrypt, s3, assets, security, admin,
+                 babel, alchemydumps, sass, email_errors, email_notifications, csp, oauth,
+                 linkedin, discourse, slack, conferences,
+                 QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
+                 QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
+from app.forms import (NOIForgotPasswordForm, NOILoginForm,
+                       NOIResetPasswordForm, NOIChangePasswordForm,
+                       NOIConfirmRegisterForm, NOISendConfirmationForm)
 from app.models import db, User, Role
 from app.views import views
+from app.utils import get_user_avatar_url
+from app import style_guide, l10n
+
+# We need to import this in order to register its models.
+import app.discourse.models
 
 from sqlalchemy.orm.exc import NoResultFound
 
-from celery import Task
 from slugify import slugify
 import yaml
+import json
+import os
 
+
+# App config vars that are exposed to client-side JavaScript code.
+EXPOSED_APP_CONFIG_VARS = [
+  'DEBUG',
+  'PINGDOM_RUM_ID',
+  'GA_TRACKING_CODE'
+]
+
+CONFIG_YML_FILENAME = '/noi/app/config/config.yml'
+
+LOCAL_CONFIG_YML_FILENAME = '/noi/app/config/local_config.yml'
+
+DEPLOYMENTS_YML_FILENAME = '/noi/app/data/deployments.yaml'
+
+YML_FILENAMES = [
+    CONFIG_YML_FILENAME,
+    LOCAL_CONFIG_YML_FILENAME,
+    DEPLOYMENTS_YML_FILENAME
+]
 
 class DeploySQLAlchemyUserDatastore(SQLAlchemyUserDatastore):
     '''
@@ -43,46 +72,77 @@ class DeploySQLAlchemyUserDatastore(SQLAlchemyUserDatastore):
             if rv is not None:
                 return rv
 
+def configure_from_os_environment(config, env=os.environ):
+    if not config.get('MAIL_SERVER') and env.get('MAIL_SERVER'):
+        config['MAIL_SERVER'] = env['MAIL_SERVER']
+        config['MAIL_PORT'] = int(env['MAIL_PORT'])
 
-def create_app(): #pylint: disable=too-many-statements
+def create_app(config=None): #pylint: disable=too-many-statements
     '''
     Create an instance of the app.
     '''
     app = Flask(__name__)
 
-    with open('/noi/app/config/config.yml', 'r') as config_file:
+    with open(CONFIG_YML_FILENAME, 'r') as config_file:
         app.config.update(yaml.load(config_file))
 
-    app.config['CELERYBEAT_SCHEDULE'] = CELERYBEAT_SCHEDULE
-
-    try:
-        with open('/noi/app/config/local_config.yml', 'r') as config_file:
-            app.config.update(yaml.load(config_file))
-    except IOError:
-        app.logger.warn("No local_config.yml file")
-
-    # If we control emails with a Regex, we have to confirm email.
-    if 'EMAIL_REGEX' in app.config:
-        app.config['SECURITY_CONFIRMABLE'] = True
+    if config is None:
+        try:
+            with open(LOCAL_CONFIG_YML_FILENAME, 'r') as config_file:
+                app.config.update(yaml.load(config_file))
+        except IOError:
+            app.logger.warn("No local_config.yml file")
+        configure_from_os_environment(app.config)
     else:
-        app.config['SECURITY_CONFIRMABLE'] = False
+        app.config.update(config)
 
-    with open('/noi/app/data/deployments.yaml') as deployments_yaml:
+    with open(DEPLOYMENTS_YML_FILENAME) as deployments_yaml:
         deployments = yaml.load(deployments_yaml)
 
+    l10n.configure_app(app)
+
     app.register_blueprint(views)
+    if app.config['DEBUG']:
+        app.register_blueprint(style_guide.views)
+
+        try:
+            from flask_debugtoolbar import DebugToolbarExtension
+            debug_toolbar = DebugToolbarExtension(app)
+        except:
+            app.logger.exception('Initialization of Flask-DebugToolbar '
+                                 'failed.')
+
+    if not app.config['DEBUG'] and app.config.get('ADMINS'):
+        email_errors.init_app(app)
+
+    admin.init_app(app)
+
+    email_notifications.init_app(app)
+
+    oauth.init_app(app)
+    if 'LINKEDIN' in app.config:
+        app.jinja_env.globals['LINKEDIN_ENABLED'] = True
+        app.register_blueprint(linkedin.views)
+    if 'DISCOURSE' in app.config:
+        discourse.init_app(app)
+    if 'SLACK_WEBHOOK_URL' in app.config:
+        slack.init_app(app)
 
     cache.init_app(app)
     csrf.init_app(app)
     mail.init_app(app)
     bcrypt.init_app(app)
     s3.init_app(app)
-    #configure_uploads(app, (photos))
 
     # Setup Flask-Security
     user_datastore = DeploySQLAlchemyUserDatastore(db, User, Role)
     security.init_app(app, datastore=user_datastore,
-                      confirm_register_form=EmailRestrictRegisterForm)
+                      login_form=NOILoginForm,
+                      confirm_register_form=NOIConfirmRegisterForm,
+                      forgot_password_form=NOIForgotPasswordForm,
+                      reset_password_form=NOIResetPasswordForm,
+                      change_password_form=NOIChangePasswordForm,
+                      send_confirmation_form=NOISendConfirmationForm)
 
     db.init_app(app)
     alchemydumps.init_app(app, db)
@@ -103,21 +163,44 @@ def create_app(): #pylint: disable=too-many-statements
     app.config['SEARCH_DEPLOYMENTS'] = this_deployment.get('searches', []) or []
     app.config['SEARCH_DEPLOYMENTS'].append(noi_deploy)
     babel.init_app(app)
+    l10n.init_app(app)
 
     app.config['DOMAINS'] = this_deployment.get('domains',
                                                 default_deployment['domains'])
 
-    # Constant that should be available for all templates.
+    app.config['CONTACT_FORM_ID'] = this_deployment.get('contact_form_id',
+                                                default_deployment['contact_form_id'])
+
+    app.config['CONFERENCES'] = conferences.from_yaml(this_deployment.get(
+        'conferences',
+        default_deployment.get('conferences', [])
+    ))
+
+    # Constants that should be available for all templates.
+
+    global_config_json = {}
+
+    for exposed_var in EXPOSED_APP_CONFIG_VARS:
+        if exposed_var in app.config:
+            global_config_json[exposed_var] = app.config[exposed_var]
+
+    global_config_json = json.dumps(global_config_json)
+
+    app.jinja_env.globals['global_config_json'] = global_config_json
+    app.jinja_env.globals['get_locale'] = get_locale
+    app.jinja_env.globals['_get_user_avatar_url'] = get_user_avatar_url
     app.jinja_env.globals['NOI_DEPLOY'] = noi_deploy
     app.jinja_env.globals['ORG_TYPES'] = ORG_TYPES
     app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS
     app.jinja_env.globals['LEVELS'] = LEVELS
+    app.jinja_env.globals['LEVELS_BY_SCORE'] = LEVELS_BY_SCORE
     app.jinja_env.globals['QUESTIONS_BY_ID'] = QUESTIONS_BY_ID
+    app.jinja_env.globals['QUESTIONNAIRES_BY_ID'] = QUESTIONNAIRES_BY_ID
 
     app.jinja_env.globals['ABOUT'] = this_deployment.get('about',
                                                          default_deployment['about'])
 
-    if not app.config.get('MAIL_USERNAME') or not app.config.get('MAIL_PASSWORD'):
+    if not app.config.get('MAIL_SERVER'):
         app.logger.warn('No MAIL_SERVER found in config, password reset will '
                         'not work.')
 
@@ -168,28 +251,15 @@ def create_app(): #pylint: disable=too-many-statements
         db.session.add(user)
         db.session.commit()
 
+    sass.init_app(app)
+    csp.init_app(app)
+
+    if app.config.get('BASIC_AUTH_FORCE'):
+        from flask.ext.basicauth import BasicAuth
+
+        basic_auth = BasicAuth()
+        basic_auth.init_app(app)
+
+    app.wsgi_app = ProxyFix(app.wsgi_app)
+
     return app
-
-
-def create_celery(app=None):
-    '''
-    Create celery tasks
-    '''
-
-    app = app or create_app()
-
-    class ContextTask(Task): #pylint: disable=abstract-method
-        '''
-        Run tasks within app context.
-        '''
-        abstract = True
-        def __call__(self, *args, **kwargs):
-            with app.app_context():
-                return Task.__call__(self, *args, **kwargs)
-
-
-    celery.conf.update(app.config)
-    celery.Task = ContextTask
-
-    return celery
-

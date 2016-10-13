@@ -1,0 +1,139 @@
+.b-close-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  opacity: 0.2;
+  font-size: 32px;
+}
+
+.b-navigation {
+    background-color: $blue;
+
+    .e-top-bar {
+        padding: 0 10px;
+        background-color: $dark-blue-matte;
+        align-items: center;
+        display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+
+        .e-logo {
+            font-size: 16px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: transparent;
+            letter-spacing: 1px;
+            background-image: url(#{$path-to-static}/img/noi-logo-ok.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 24px;
+            flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
+        }
+
+        .e-user-utils {
+            padding: 10px 0;
+        }
+
+        .e-post {
+            color: $white;
+            padding: 10px;
+            opacity: .6;
+            vertical-align: top;
+        }
+
+        .e-user-picture {
+            width: 40px;
+            height: 40px;
+            @include circle;
+        }
+    }
+
+    .e-main-nav {
+        display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+
+        .e-nav-item {
+            color: $white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+            flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
+            &.m-active {
+                background-color: $gray-05;
+            }
+        }
+
+        .e-nav-item:hover {
+            background-color: $gray-10;
+        }
+
+        .material-icons {
+            font-size: 30px;
+            display: block;
+            margin-bottom: 6px;
+            opacity: .4;
+        }
+    }
+}
+
+.b-post-update-wrapper {
+    background-color: $dark-blue-matte;
+    position: static;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    .e-post-update {
+        overflow: hidden;
+        padding: 0 20px;
+        color: $white;
+        text-align: center;
+        max-height: 0;
+
+        h3 {
+            margin: 20px 0 0;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+
+        p {
+            color: currentColor;
+            font-size: 18px;
+        }
+
+        textarea {
+            width: 100%;
+            border: none;
+            padding: 10px;
+            height: 20vh;
+            background-color: $white-10;
+            margin-bottom: 10px;
+
+            &::-webkit-input-placeholder { color: $white-70; }
+            &:-moz-placeholder { color: $white-70; } /* Firefox 18- */
+            &::-moz-placeholder { color: $white-70; }  /* Firefox 19+ */
+            &:-ms-input-placeholder { color: $white-70; }
+        }
+
+        .b-button {
+            background-color: $blue;
+            position: relative;
+            margin-bottom: 20px;
+
+            > i {
+                position: absolute;
+                right: 20px;
+                margin-top: -2px;
+            }
+        }
+    }
+}
+
+.b-post-update-wrapper.m-update-active {
+    position: fixed;
+    box-shadow: 0 15px 15px -15px $gray-50;
+
+    .e-post-update {
+        margin-top: 0;
+        max-height: 1000px;
+    }
+}

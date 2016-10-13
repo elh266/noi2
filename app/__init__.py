@@ -10,16 +10,15 @@ from flask_security import Security
 from flask_cache import Cache
 from flask_babel import Babel
 from flask_bcrypt import Bcrypt
-from flask.ext.uploads import UploadSet, IMAGES
-from celery import Celery
 from flask_mail import Mail
 from flask_s3 import FlaskS3
 from flask_wtf.csrf import CsrfProtect
+from flask_oauthlib.client import OAuth
 
-from slugify import slugify
 from babel import Locale, UnknownLocaleError
-import yaml
 import locale
+
+from .questionnaires import Questionnaires
 
 s3 = FlaskS3()
 mail = Mail()
@@ -28,12 +27,7 @@ security = Security()
 csrf = CsrfProtect()
 babel = Babel()
 bcrypt = Bcrypt()
-
-celery = Celery(
-    __name__,
-    broker='redis://redis', #TODO this should be from config
-    include=['app.tasks']
-)
+oauth = OAuth()
 
 assets = Environment()
 
@@ -41,29 +35,37 @@ main_css = Bundle('css/vendor/bootstrap.css',
                   output='gen/main_packed.%(version)s.css')
 assets.register('main_css', main_css)
 
-main_js = Bundle('js/plugins.js',
+main_js = Bundle('js/main.js',
+                 'js/pingdom-rum.js',
+                 'js/google-analytics.js',
+                 'js/tutorial.js',
+                 'vendor/bootstrap/js/alert.js',
+                 'vendor/bootstrap/js/modal.js',
+                 'vendor/bootstrap/js/tab.js',
                  #filters='jsmin',
                  output='gen/main_packed.%(version)s.js')
 assets.register('main_js', main_js)
 
-#photos = UploadSet('photos', IMAGES)
-
 cache = Cache()
 
 LEVELS = {'LEVEL_I_CAN_EXPLAIN': {'score': 2,
-                                  'icon': '<i class="fa-fw fa fa-book"></i>',
-                                  'label': 'I can explain'},
+                                  'class': 'm-explain',
+                                  'label': 'I can explain it'},
           'LEVEL_I_CAN_DO_IT': {'score': 5,
-                                'icon': '<i class="fa-fw fa fa-cogs"></i>',
+                                'class': 'm-do',
                                 'label': 'I can do it'},
           'LEVEL_I_CAN_REFER': {'score': 1,
-                                'icon': '<i class="fa-fw fa fa-mail-forward"></i>',
-                                'label': 'I can refer you'},
+                                'class': 'm-connect',
+                                'label': 'I can connect others'},
           'LEVEL_I_WANT_TO_LEARN': {'score': -1,
-                                    'icon': '<i class="fa-fw fa fa-question"></i>',
+                                    'class': 'm-learn',
                                     'label': 'I want to learn'}}
 
 VALID_SKILL_LEVELS = [v['score'] for k, v in LEVELS.iteritems()]
+LEVELS_BY_SCORE = {}
+
+for v in LEVELS.values():
+    LEVELS_BY_SCORE[v['score']] = v
 
 NOI_COLORS = '#D44330,#D6DB63,#BFD19F,#83C8E7,#634662,yellow,gray,#a3abd1'.split(',')
 
@@ -85,17 +87,8 @@ ORG_TYPES = {'edu': 'Academia',
              'other': 'Other'}
 
 # Process YAML files
-QUESTIONNAIRES = yaml.load(open('/noi/app/data/questions.yaml'))
-QUESTIONS_BY_ID = {}
-for questionnaire in QUESTIONNAIRES:
-    for topic in questionnaire.get('topics', []):
-        for question in topic['questions']:
-            question_id = slugify('_'.join([questionnaire['id'],
-                                            topic['topic'], question['label']]))
-            question['id'] = question_id
-            question['area_id'] = questionnaire['id']
-            question['topic'] = topic['topic']
-            if question_id in QUESTIONS_BY_ID:
-                raise Exception("Duplicate skill id {}".format(question_id))
-            else:
-                QUESTIONS_BY_ID[question_id] = question
+MIN_QUESTIONS_TO_JOIN = 3
+
+QUESTIONNAIRES = Questionnaires()
+QUESTIONNAIRES_BY_ID = QUESTIONNAIRES.by_id
+QUESTIONS_BY_ID = QUESTIONNAIRES.questions_by_id

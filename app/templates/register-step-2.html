@@ -1,0 +1,40 @@
+{% extends "__base_new__.html" %}
+
+{% block title %}{{ gettext('Register - Basic Information') }}{% endblock %}
+
+{% from "_macros.html" import render_multi_select_instructions %}
+{% from "security/_macros_new.html" import render_field_with_errors, render_field %}
+
+{% block content %}
+<div class="b-onboarding m-signup">
+  <section>
+    <div class="e-confirmed material-icons">check</div>
+    <p class="e-onboarding-message">{{ gettext("Now please share some basic info about yourself, so others can know who you are.") }}</p>
+
+    <form class="e-onboarding-form" method="post">
+      {{ form.csrf_token }}
+
+      {{ render_field_with_errors(form.position) }}
+      {{ render_field_with_errors(form.organization) }}
+      {{ render_field_with_errors(form.country) }}
+      {{ render_field_with_errors(form.expertise_domain_names) }}
+      {{ render_multi_select_instructions() }}
+
+      <input class="b-button" type="submit" value="{{ gettext('Next') }}">
+
+    </form>
+  </section>
+
+  <ul class="list-unstyled">
+    <li><a href="/logout">{{ gettext('Logout') }}</a></li>
+  </ul>
+
+  <footer>
+    <div class="e-signup-progress">
+      <span></span>
+      <span class="m-current"></span>
+      <span></span>
+    </div>
+  </footer>
+</div>
+{% endblock %}

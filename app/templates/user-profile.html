@@ -1,229 +1,190 @@
-{% extends "__base__.html" %}
+{% extends "__base_ui__.html" %}
 
-{% block title %}{% if user.first_name and user.last_name %}{{user.first_name}} {{user.last_name}}'s{% else %}NoI User Public{% endif %} Profile{% endblock %}
-{% block page_style_post %}
-<style>
-.profile-img { width: 100px; height: 100px; border-radius: 50px;}
-.profile-map { width: 300px; height: 100px; border-radius: 5px;}
+{% block title %}{{ gettext("%(user)s's Profile", user=user.full_name) }}{% endblock %}
 
-.debug { border-style: none; }
-.flag-icon { font-size: 100px; text-align: center; vertical-align: middle; border-radius: 50px;} 
+{% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel, render_user_mailto_link %}
 
-.row { margin-bottom: 20px;}
+{% set is_current_user_profile = (user.id == current_user.id) %}
 
-.noi-expertise-tag-profile { border: solid grey 1px;
-	padding: 1px 2px 1px 2px;
-	border-radius2: 5px;
-	list-style-type: none;
-	font-size: 12px;
-	opacity: 0.8;
-}
+{% set tabs = [
+  ('overview', gettext('Overview')),
+  ('expertise', gettext('Expertise')),
+] %}
 
-.noi-expertise-list-profile {
-	line-height: 1.5em;
-	list-style-type: none;
-}
+{% set active_tab = active_tab|default(tabs[0][0]) %}
 
-{% for questionnaire in QUESTIONNAIRES %}
-.noi-color-{{questionnaire['id']}} { background-color: {{ questionnaire['icon-color'] }}; }
-{% endfor %}
-
-</style>
-
-<link href="/static/styles/flag-icon.css" rel="stylesheet">
-
-{% endblock %}
+{% block body_class -%}
+{%- if not is_current_user_profile -%}
+b-public-profile
+{%- endif -%}
+{%- endblock %}
 
 {% block content %}
 
-	<div class="row">
-	<div class="debug col-xs-4 col-md-4">
-			<center><span class="flag-icon flag-icon-squared flag-icon-{{ user.country.code }}"></center>
-		</div>
-		<div class="debug col-xs-4 col-md-4">
-      {% if current_user.has_picture %}
-      <center><img class="profile-img" src="{{ user.picture_url }}"/><center>
-      {% endif %}
-			</div>
-		<div class="debug col-xs-4 col-md-4">
-      {#
-			<center>
-			<img class="profile-map" src="https://maps.googleapis.com/maps/api/staticmap?center={{ user.latlng }}&size=300x100&zoom=5&markers=color:blue%7Clabel:%7C{{ user.latlng }}" alt="location">
-		</center>
-    #}
-		</div>
-	</div>
-<div class="row">
-	<div class="debug col-md-12 text-center">
-		{% if user.first_name and user.last_name %}
-			<h2>{{ user.first_name }} {{ user.last_name }}</h2>
-		{% endif %}
-	</div>
-	<div class="debug col-md-12 text-center">
-		{{ user.organization or '' }} | {{ user.position or '' }}
-	</div>
-</div>
+<section class="b-profile-header">
+    <div class="e-bg" style="background-image: url('{{ get_user_avatar_url(user) }}')"></div>
+    <div class="e-left">
+        {% if is_current_user_profile %}
+        <a href="{{ url_for('views.my_profile') }}"><img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture"></a>
+        <a href="{{ url_for('views.my_profile') }}" class="e-edit"><i class="material-icons">edit</i>{{ gettext('Edit Profile') }}</a>
+        {% else %}
+        <img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture">
+        {% endif %}
 
-<div class="row">
-	<div class="debug col-xs-2 col-md-2 text-center"></div>
-	<div class="debug col-xs-2 col-md-2 text-center">
-		{# <i class="fa fa-star-o fa-2x"></i> #}
-	</div>
-	<div class="debug col-xs-2 col-md-2 text-center">
-		<a href="mailto:{{ user.email }}?subject=Contact+request+via+Network+Of+Innovators&body=Dear+{{user.first_name}}">
-			<i class="fa fa-at fa-2x"></i> E-Mail
-		</a>
-	</div>
-	<div class="debug col-xs-2 col-md-2 text-center">
-		<i class="fa fa-phone-square fa-2x"></i> Phone
-	</div>
-  {#
-	<div class="debug col-xs-2 col-md-2 text-center">
-		<a href="/vcard/{{ user.id }}">
-			<i class="fa fa-download fa-2x"></i></i> vCard
-		</a>
-	</div>
-  #}
-		<div class="debug col-xs-2 col-md-2 text-center"></div>
-</div>
-<br/>
+        {% if user.linkedin and user.linkedin.profile_url %}
+        <a href="{{ user.linkedin.profile_url }}" target="_blank" class="e-edit"><img src="{{ url_for('static', filename='img/LinkedIn_logo_initials.png') }}" alt="LinkedIn" width="24"></a>
+        {% endif %}
 
-<div class="row">
-	<div class="col-xs-12 col-md-4">
-		<h3>{{ gettext('Languages:') }}</h3>
-		{% if user.locales %}
-		<ul>
-			{% for locale in user.locales %}
-				<li>{{ locale.display_name }}</li>
-			{% endfor %}
-		</ul>
-		{% else %}
-		{{ gettext('No language information available.') }}
-		{% endif %}
-	</div>
-	<div class="col-xs-12 col-md-4">
-		<h3>{{ gettext("Domain(s) of expertise:") }}</h3>
-		{% if user.expertise_domain_names %}
-		<ul>
-			{% for domain in user.expertise_domain_names %}
-			<li>{{ domain }}</li>
-			{% endfor %}
-		</ul>
-		{% else %}
-		{{ gettext("No domain information available.") }}
-		{% endif %}
-	</div>
-	<div class="col-xs-12 col-md-4">
-		<h3>{{ gettext('Projects I have done') }}</h3>
-		{% if user.projects %}
-		<pre>{{ user.projects }}</pre>
-		{% else %}
-		{{ gettext("No project information provided.") }}
-		{% endif %}
-	</div>
-</div>
+        <div>
+          {% for conference in user.conference_objects|sort(attribute='start_date', reverse=True) %}
+            {% if loop.index <= 3 %}
+              <a href="{{ conference.url }}" target="_blank" title="{{ conference.name }}"><img src="{{ conference.logo_url }}" alt="{{ conference.name }}" class="conference-logo"></a>
+            {% endif %}
+          {% endfor %}
+        </div>
+    </div>
+    <div class="e-right">
+        <h2 class="e-name">{{ user.full_name }}</h2>
+        <h3 class="e-job">{{ user.position }}</h3>
 
+        <ul class="e-info">
+           {% if user.organization %}
+             <li><span class="material-icons">business</span>{{ user.organization }}</li>
+           {% endif %}
 
-<div class="row">
-{% if user.skills %}
-{% for questionnaire in QUESTIONNAIRES %}
-	<div class="col-md-2 text-center {{'noi-expertise-not-yet' if not questionnaire.topics}}">
-<img class="noi-expertise-icon" src="/static/img/expertise-icons/{{ questionnaire.icon }}"><br/>{{ questionnaire.name }}
-</div>
-<div class="col-md-4">
-<ul class="noi-expertise-list-profile">
+           {% if user.expertise_domain_names %}
+             {% for domain in user.expertise_domain_names %}
+               <li><span class="material-icons">school</span>{{ domain }}</li>
+             {% endfor %}
+           {% endif %}
 
-{% for skill in user.skills %}
-{% with %}
-{% set question = QUESTIONS_BY_ID[skill.name] %}
-{% if question.area_id == questionnaire.id %}
-<li>
-<span class="noi-expertise-level-profile">
-    {% set level = skill.level %}
-    {% if level == -1 %}
-      <i class="fa-fw fa fa-question"></i>
-    {% elif level == 1 %}
-      <i class="fa-fw fa fa-mail-forward"></i>
-    {% elif level == 2 %}
-      <i class="fa-fw fa fa-book"></i>
-    {% elif level == 5 %}
-      <i class="fa-fw fa fa-cogs"></i>
-    {% else %}
-      <i class="fa fa-question"></i>
+           {% if user.full_location %}
+           <li><span class="material-icons">location_on</span>{{ user.full_location }}</li>
+           {% endif %}
+
+           {% if user.locales %}
+             {% for locale in user.locales %}
+               <li>{{ locale.get_display_name(locale=get_locale()) }}</li>
+             {% endfor %}
+           {% endif %}
+        </ul>
+    </div>
+</section>
+
+{{ render_tab_bar(tabs, active_tab) }}
+
+{% call render_tab_panel('overview', active_tab) %}
+
+<div class="b-roles-list">
+{% for skill_level, questionnaires in overview_data.items() %}
+  {% if is_current_user_profile %}
+    {% if skill_level == LEVELS['LEVEL_I_CAN_EXPLAIN'].score %}
+      <p>{{ gettext("You are an <strong class='m-explainer'>explainer</strong> of:") }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_DO_IT'].score %}
+      <p>{{ gettext("You are a <strong class='m-practitioner'>practitioner</strong> of:") }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_REFER'].score %}
+      <p>{{ gettext("You are a <strong class='m-connector'>connector</strong> of:") }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_WANT_TO_LEARN'].score %}
+      <p>{{ gettext("You are a <strong class='m-peer'>peer</strong> of:") }}</p>
     {% endif %}
-</span>
-&nbsp;&nbsp;<span class="noi-expertise-tag-profile noi-color-{{questionnaire['id']}}">{{ question.label|replace('-', ' ') }}</span>
-</li>
-{% endif %}
-{% endwith %}
+  {% else %}
+    {% if skill_level == LEVELS['LEVEL_I_CAN_EXPLAIN'].score %}
+      <p>{{ gettext("Ask %(user)s to <strong class='m-explainer'>explain</strong>:", user=user.full_name) }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_DO_IT'].score %}
+      <p>{{ gettext("Ask %(user)s to <strong class='m-practitioner'>share experiences</strong> in:", user=user.full_name) }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_REFER'].score %}
+      <p>{{ gettext("Ask %(user)s to <strong class='m-connector'>connect you</strong> in:", user=user.full_name) }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_WANT_TO_LEARN'].score %}
+      <p>{{ gettext("Ask %(user)s to <strong class='m-peer'>learn with you</strong> in:", user=user.full_name) }}</p>
+    {% endif %}
+  {% endif %}
+  <ul class="
+    {% if skill_level == LEVELS['LEVEL_I_CAN_EXPLAIN'].score %}
+    m-explainer
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_DO_IT'].score %}
+    m-practitioner
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_REFER'].score %}
+    m-connector
+    {% elif skill_level == LEVELS['LEVEL_I_WANT_TO_LEARN'].score %}
+    m-peer
+    {% endif %}
+  ">
+    {% for questionnaire in questionnaires %}
+      <li>{{ gettext(questionnaire.name) }}</li>
+    {% endfor %}
+  </ul>
 {% endfor %}
-
-</ul>
 </div>
-{% if loop.index % 2 == 0 %}
-	</div>
-	<div class="row">
+
+  <div class="b-network-viz">
+    {# TODO: This is very similar to the treemap code in network.html,
+       consider refactoring. #}
+    <div class="e-legend">
+      <div class="e-legend-item m-learn"><span>{{ gettext('Wants to Learn') }}</span></div><!--
+      --><div class="e-legend-item m-explain"><span>{{ gettext('Can Explain') }}</span></div><!--
+      --><div class="e-legend-item m-connect"><span>{{ gettext('Can Connect Others') }}</span></div><!--
+      --><div class="e-legend-item m-do"><span>{{ gettext('Can Do It') }}</span></div>
+    </div>
+    {% for area_info in viz_data %}
+        <div class="e-questionnaire-area">
+          {% if is_current_user_profile %}
+          <a href="{{ url_for('views.my_expertise_area', areaid=area_info.questionnaire_id, _anchor='expertise') }}">
+          {% else %}
+          <a href="{{ url_for('views.get_user_expertise_area', userid=user.id, areaid=area_info.questionnaire_id, _anchor='expertise') }}">
+          {% endif %}
+          <div class="e-skill-level m-remaining" style="width: 100%"></div>
+          <div class="e-skill-level m-do" style="width: {{ ((area_info.learn + area_info.explain + area_info.connect + area_info.do) / user.questionnaire_progress[area_info.questionnaire_id].total) * 100 }}%"></div>
+          <div class="e-skill-level m-connect" style="width: {{ ((area_info.learn + area_info.explain + area_info.connect) / user.questionnaire_progress[area_info.questionnaire_id].total) * 100 }}%"></div>
+          <div class="e-skill-level m-explain" style="width: {{ ((area_info.learn + area_info.explain) / user.questionnaire_progress[area_info.questionnaire_id].total) * 100 }}%"></div>
+          <div class="e-skill-level m-learn" style="width: {{ ((area_info.learn) / user.questionnaire_progress[area_info.questionnaire_id].total) * 100 }}%"></div>
+          <div class="e-screen"></div>
+          <h2>{{ gettext(area_info.name) }}</h2>
+          <p>{{ gettext('%(count)d questions answered', count=area_info.total) }}</p>
+          </a>
+        </div>
+    {% endfor %}
+  </div>
+
+<div class="b-temporary-styling">
+  <h3>{{ gettext('Projects I have done') }}</h3>
+  {% if user.projects %}
+  <div class="e-user-projects">{{ user.projects }}</div>
+  {% else %}
+  {{ gettext("No project information provided.") }}
+  {% endif %}
+</div>
+  {% endcall %}
+
+{% if is_current_user_profile %}
+
+{% if in_questionnaire %}
+  {% call render_tab_panel('expertise', active_tab) %}
+  {% include "_profile-questionnaire.html" %}
+  {% endcall %}
+{% else %}
+  {% call render_tab_panel('expertise', active_tab, class='b-profile-progress') %}
+  {% include "_profile-progress.html" %}
+  {% endcall %}
 {% endif %}
-{% endfor %}
 
+{% else %}
+
+{% if areaid %}
+  {% call render_tab_panel('expertise', active_tab, class="b-expertise") %}
+  {% include "_profile-expertise-match-area.html" %}
+  {% endcall %}
+{% else %}
+  {% call render_tab_panel('expertise', active_tab, class="b-match-me") %}
+  {% include "_profile-expertise-match.html" %}
+  {% endcall %}
 {% endif %}
 
-</div>
-
-<div class="text-center">
-{% for k, v in LEVELS|dictsort %}
-<span style="border: solid 1px black; padding: 3px;">{{v['icon']|safe}}&nbsp;{{ gettext(v['label']) }}</span>
-      {% endfor %}
-</div>
+{% endif %}
 
 {% endblock %}
 
-{#
 {% block page_script %}
-<script src="/static/chart.js"></script>
-<script>
-	var all_skills = {{ SKILLS|tojson }};
-  var user_skills = {{user.skills|tojson}};
-
-  var labels = [];
-  var data = [];
-  for(var key in all_skills['opendata'].sort()) {
-  	labels.push(all_skills['opendata'][key]);
-  	if (all_skills['opendata'][key] in user_skills['opendata']) {
-  		data.push(user_skills['opendata'][all_skills['opendata'][key]]);
-  	} else {
-  		data.push(0);
-  	};
-  }
-
-
-	var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
-	var randomColorFactor = function(){ return Math.round(Math.random()*255)};
-	var radarChartData = {
-		labels: labels.slice(0,12),
-		datasets: [
-			{
-				label: "My Second dataset",
-				fillColor: "rgba(151,187,205,0.2)",
-				strokeColor: "rgba(151,187,205,1)",
-				pointColor: "rgba(151,187,205,1)",
-				pointStrokeColor: "#fff",
-				pointHighlightFill: "#fff",
-				pointHighlightStroke: "rgba(151,187,205,1)",
-				data : data.slice(0,12),
-			}
-		]
-	};
-	
-	var myRadarOpendata = new Chart(document.getElementById("canvas-opendata").getContext("2d")).Radar(radarChartData, {
-			responsive: false
-		});
-	var myRadarPrizes = new Chart(document.getElementById("canvas-prizes").getContext("2d")).Radar(radarChartData, {
-			responsive: false
-		});
-	var myRadarCrowdsourcing = new Chart(document.getElementById("canvas-crowdsourcing").getContext("2d")).Radar(radarChartData, {
-			responsive: false
-		});
-	</script>
+{% if in_questionnaire %}
+<script src="{{ url_for('static', filename='js/pages/user-profile/questionnaire.js') }}"></script>
+{% endif %}
 {% endblock %}
-#}

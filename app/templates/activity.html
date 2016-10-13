@@ -1,0 +1,189 @@
+{% extends "__base_ui__.html" %}
+
+{% from "_macros.html" import render_scrolling_tab_bar, render_tab_bar, render_tab_panel %}
+{% from "_activity_macros.html" import user_link, user_avatar %}
+
+{% block page_style_pre %}
+  {% if current_user.is_authenticated() %}
+  <meta name="current-tutorial-step" content="{% if current_user.tutorial_step %}{{ current_user.tutorial_step }}{% else %}1{% endif %}">
+  {% endif %}
+{% endblock %}
+
+{% set base_tabs = [
+  ('activity', gettext('Activity')),
+  ('connected', gettext('Most Connected')),
+  ('complete', gettext('Most Complete Profiles')),
+] %}
+
+{% if current_user.is_authenticated() %}
+  {% set tabs = base_tabs + [('progress', gettext('My Profile Progress'))] %}
+{% else %}
+  {% set tabs = base_tabs %}
+{% endif %}
+
+{% set active_tab = active_tab|default(tabs[0][0]) %}
+
+{% block content %}
+
+{{ render_scrolling_tab_bar(tabs, active_tab) }}
+
+<div> <!-- Start of tab panel container -->
+
+{% macro render_blog_post(blog_post) %}
+<li class="e-feed-item m-blog-item">
+  <div class="e-feed-message">
+    <p><strong>{{ blog_post.title }}</strong></p>
+    <p>{{ blog_post.description }}</p>
+    <div class="e-actions">
+      <a href="{{ blog_post.link }}" target="_blank"><span class="material-icons">open_in_new</span> <span class="e-action-label">Read more at {{ blog_post.domain }}</span></a>
+    </div>
+  </div>
+</li>
+{% endmacro %}
+
+{% call render_tab_panel('activity', active_tab, class='b-activity-feed') %}
+
+<div class="e-blog-items-container">
+<ul>
+  {% for blog_post in blog_posts[:1] %}
+    {{ render_blog_post(blog_post) }}
+  {% endfor %}
+  {% if blog_posts|length > 1 %}
+    <li class="e-feed-item m-blog-item m-show-more-blog-items">
+      <a href="#" class="material-icons">expand_more</a>
+    </li>
+  {% endif %}
+</ul>
+
+<ul class="e-more-blog-items">
+  {% for blog_post in blog_posts[1:] %}
+    {{ render_blog_post(blog_post) }}
+  {% endfor %}
+  <li class="e-feed-item m-blog-item m-show-less-blog-items">
+    <a href="#" class="material-icons">expand_less</a>
+  </li>
+</ul>
+</div>
+
+{% include "_activity_events.html" %}
+
+{% endcall %}
+
+{% call render_tab_panel('connected', active_tab, class='b-activity-feed') %}
+<ul class="e-activity-feed-container">
+  {% for user, score in most_connected_profiles %}
+    <li class="e-feed-item">
+      {{ user_avatar(user) }}
+      <div class="e-feed-message">
+        <p>{{ user_link(user) }}<br>
+        {{ ngettext('%(num)d Connection', '%(num)d Connections', score) }}
+        </p>
+      </div>
+      <a href="{{ url_for('views.get_user', userid=user.id) }}" class="material-icons">arrow_forward</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endcall %}
+
+{% call render_tab_panel('complete', active_tab, class='b-activity-feed') %}
+<ul class="e-activity-feed-container">
+  {% for user, score in most_complete_profiles %}
+    <li class="e-feed-item">
+      {{ user_avatar(user) }}
+      {% set TOTAL_QUESTIONS = QUESTIONS_BY_ID.keys()|length %}
+      <div class="e-feed-profile {% if score == TOTAL_QUESTIONS %}m-completed{% endif %}">
+        <p>{{ user_link(user) }}</p>
+        <div class="e-progress-bar" data-progress="{{ score }}/{{ TOTAL_QUESTIONS }}"><span class="e-bar" style="width: {{ score / TOTAL_QUESTIONS * 100 }}%"></span></div>
+      </div>
+    </li>
+  {% endfor %}
+</ul>
+
+{% include "_complete_profile_cta.html" %}
+
+{% endcall %}
+
+{% if current_user.is_authenticated() %}
+{% call render_tab_panel('progress', active_tab, class='b-profile-progress') %}
+
+{% include "_profile-progress.html" %}
+
+{% endcall %}
+{% endif %}
+
+</div> <!-- End of tab panel container -->
+
+{% if current_user.is_authenticated() %}
+
+{% macro render_tutorial_step(step, max_step, extra_classes='') %}
+<div class="b-tutorial-box {{ extra_classes }}" id="tutorial-{{ step }}">
+      <div class="e-top-arrow"></div>
+      {{ caller() }}
+      {% if step == max_step %}
+      <button class="b-button js-reset-tutorial-on-login" data-tutorial-step="{{ step + 1 }}">
+        {{ gettext('OK') }}
+      </button>
+      <button class="b-button m-naked js-dont-reset-tutorial-on-login" data-tutorial-step="{{ step + 1 }}">
+        {{ gettext('Dismiss Forever') }}
+      </button>
+      {% else %}
+      <button class="b-button" data-tutorial-step="{{ step + 1 }}">
+          {{ gettext('Next') }}
+      </button>
+      {% endif %}
+      <div class="e-counter">{{ step }}/{{ max_step }}</div>
+</div>
+{% endmacro %}
+
+{% if DISCOURSE_ENABLED %}
+  {% set max_step = 4 %}
+{% else %}
+  {% set max_step = 3 %}
+{% endif %}
+
+{% call render_tutorial_step(1, max_step) %}
+      <p>{{ gettext('Welcome <strong>%(first_name)s</strong>!', first_name=current_user.first_name) }}</p>
+      <p>{{ gettext('You can <strong>meet your top matches</strong> based on your skills and interests.') }}</p>
+{% endcall %}
+
+{% call render_tutorial_step(2, max_step) %}
+      <p>{{ gettext('<strong>Find innovators</strong> by expertise area, location, event or other search term.') }}</p>
+{% endcall %}
+
+{% if DISCOURSE_ENABLED %}
+
+{% call render_tutorial_step(3, max_step) %}
+      <p>{{ gettext("Have a question or something to share with the network? <strong>Discuss it</strong> with like-minded innovators in one of our channels! You can change your discussion username in <a href='./me'>Edit Profile.</a>") }}</p>
+{% endcall %}
+
+{% call render_tutorial_step(4, max_step, extra_classes="on-right-side") %}
+      <p>{{ gettext("Don't forget to <strong>update your profile</strong>.") }}</p>
+      <p>{{ gettext("The more questions you answer, the more relevant your matches.") }}</p>
+{% endcall %}
+
+{% else %}
+{% call render_tutorial_step(3, max_step, extra_classes="on-right-side") %}
+      <p>{{ gettext("Don't forget to <strong>update your profile</strong>.") }}</p>
+      <p>{{ gettext("The more questions you answer, the more relevant your matches.") }}</p>
+{% endcall %}
+{% endif %}
+
+{# <a class="b-button js-sticky-on" href="#">on</a> #}
+{% if current_user.show_sticky %}
+  <div class="b-sticky" id="announcement-sticky">
+    <p>{{ gettext('<a href="./my-expertise">Answer more questions</a> about your expertise to get matched with innovators you can learn the most from!') }}</p>
+    <p><a class="e-close-button js-sticky-off" href="#" data-target="#announcement-sticky"><i class="material-icons">close</i></a></p>
+  </div>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}
+
+{% block page_script %}
+<script src="{{ url_for('static', filename='vendor/jquery.jscroll.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/jquery.timeago.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pages/activity.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pages/scroller.js') }}"></script>
+<script src="{{ url_for('static', filename='js/sticky.js') }}"></script>
+{% endblock %}

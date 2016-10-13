@@ -1,0 +1,32 @@
+body {
+    font-family: $main-font;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+p { color: $gray-80; }
+
+a {
+    text-decoration: none;
+    color: inherit;
+    &.m-text-link {
+      color: lighten($blue, 20%);
+      font-weight: 700;
+      &:hover {
+        color: lighten($blue, 40%);
+      }
+    }
+}
+
+.b-logo {
+    color: $white-40;
+    font-size: 60px;
+    font-weight: 600;
+    letter-spacing: 10px;
+}
+
+@mixin material {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+}

@@ -1,0 +1,50 @@
+{% extends "style-guide/base_profile.html" %}
+
+{% block title %}Profile Categories{% endblock %}
+
+
+
+{% block content %}
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items">
+        <li class="e-item">Overview</li>
+        <li class="e-item m-active">Expertise</li>
+    </ul>
+</nav>
+
+<section class="b-profile-progress">
+    <ul class="e-progress-container">
+        <li class="e-progress-item" data-questions-left="0">
+            <a href="#">Crowdsourcing</a>
+            <div class="e-bar"></div>
+        </li>
+        <li class="e-progress-item" data-questions-left="5">
+            <a href="#">Citizen Science</a>
+            <div class="e-questions-left">5 questions left</div>
+            <div class="e-bar" style="width: 68%;"></div>
+        </li>
+        <li class="e-progress-item" data-questions-left="11">
+            <a href="#">Open Data</a>
+            <div class="e-questions-left">11 questions left</div>
+            <div class="e-bar" style="width: 15%;"></div>
+        </li>
+        <li class="e-progress-item">
+            <a href="">Nudges</a>
+        </li>
+        <li class="e-progress-item">
+            <a href="">Engagement</a>
+        </li>
+        <li class="e-progress-item">
+            <a href="">Lab Design</a>
+        </li>
+        <li class="e-progress-item">
+            <a href="">Prizes & Challenges</a>
+        </li>
+    </ul>
+</section>
+<footer class="b-footer-message">
+    <h3>Complete your Profile</h3>
+    <p>Let others know your skills & expertise and also get more relevant matches!</p>
+</footer>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "__base_ui__.html" %}
+
+{% from "_macros.html" import render_scrolling_static_tab_bar, render_static_tab_bar, render_static_tab_panel, get_user_avatar_url, render_user_mailto_link %}
+
+{% set tabs = [
+  ('practitioners', gettext('Your Practitioners'), url_for('views.match_practitioners')),
+  ('explainers', gettext('Your Explainers'), url_for('views.match_explainers')),
+  ('connectors', gettext('Your Connectors'), url_for('views.match_connectors')),
+  ('peers', gettext('Your Peers'), url_for('views.match_peers')),
+] %}
+
+{% block content %}
+  {{ render_scrolling_static_tab_bar(tabs, active_tab) }}
+
+  {% call render_static_tab_panel(class='b-match-me') %}
+    <p class="e-intro">
+      {% if active_tab == 'connectors' %}
+          {{ gettext("Connectors know others who can answer your questions. Ask them to introduce you!") }}
+      {% elif active_tab == 'peers' %}
+          {{ gettext("Peers want to learn the same things as you. Why don't you join forces?") }}
+      {% elif active_tab == 'explainers' %}
+          {{ gettext("Explainers know what you want to learn. Ask them to guide you!") }}
+      {% elif active_tab == 'practitioners' %}
+          {{ gettext("Practitioners have experience in what you want to learn. Ask them to share their experiences!") }}
+      {% endif %}
+    </p>
+    {% for match in matches %}
+      <div class="e-match-item">
+        <header>
+          <div class="e-picture">
+            <a href="{{ url_for('views.get_user_expertise', userid=match.user.id) }}">
+              <img src="{{ get_user_avatar_url(match.user) }}" alt="">
+            </a>
+            {% call render_user_mailto_link(match.user, class="e-send-mail") %}<i class="material-icons">send</i>{% endcall %}
+          </div>
+          <div class="e-info">
+            <h3 class="e-name"><a href="{{ url_for('views.get_user_expertise', userid=match.user.id) }}">{{ match.user.full_name }}</a></h3>
+            <h4 class="e-job">{{ match.user.position }}</h4>
+            <h5 class="e-institution">{{ match.user.organization }}</h5>
+          </div>
+        </header>
+        <ul class="e-match-question-group">
+          {% for questionnaire_id, question_ids in match.questionnaires %}
+            <li class="e-match-questionnaire">
+              <a href="{{ url_for('views.get_user_expertise_area', userid=match.user.id, areaid=questionnaire_id, _anchor=level_score) }}">
+                <div class="e-subject">{{ gettext(QUESTIONNAIRES_BY_ID[questionnaire_id]['name']) }}</div>
+                <div class="e-question-number">{{ ngettext('%(num)d Skill Match', '%(num)d Skill Matches', question_ids|length) }}</div>
+                <i class="material-icons">arrow_forward</i>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% else %}
+      <div class="b-temporary-styling" style="text-align: center">
+      <p><strong>{{ gettext("You currently have no matches.") }}</strong></p>
+      <p>{{ gettext('Matches are created between users that want to learn and users that can do, explain, or connect. To get matched, go to the <a href="%(expertise_url)s">Expertise</a> area of your profile and answer questions in areas you want to learn about.', expertise_url=url_for('views.my_expertise', _anchor='expertise')) }}</p>
+      </div>
+    {% endfor %}
+  {% endcall %}
+{% endblock %}
+
+{% block page_script %}
+  <script src="{{ url_for('static', filename='js/pages/scroller.js') }}"></script>
+{% endblock %}

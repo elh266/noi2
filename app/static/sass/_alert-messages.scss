@@ -1,0 +1,20 @@
+.b-alert-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    text-align: center;
+    color: $white;
+    box-shadow: 0 0 10px $gray-30;
+    z-index: 1150;
+
+    .b-close-button { opacity: 1.0; }
+
+    p { color: $white; }
+}
+
+.b-alert-message.m-error { background-color: $red; }
+.b-alert-message.m-success { background-color: $green; }
+.b-alert-message.m-warning { background-color: $yellow; }
+.m-hide { display: none; }

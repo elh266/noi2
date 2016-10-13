@@ -1,0 +1,2417 @@
+# Spanish translations for PROJECT.
+# Copyright (C) 2016 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-07-06 05:07+0000\n"
+"PO-Revision-Date: 2015-11-23 10:15-0500\n"
+"Last-Translator: \n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.2.0\n"
+
+#: forms.py:86
+#, fuzzy
+msgid "Choose a country"
+msgstr "Elige un país"
+
+#: forms.py:109 forms.py:157
+msgid "Fields of Work"
+msgstr "Áreas de trabajo"
+
+#: forms.py:115
+msgid "Only jpeg, jpg, and png images are allowed."
+msgstr "Sólo se permiten imágenes en formato jpeg, jpg o png."
+
+#: forms.py:140
+#, fuzzy
+msgid "User Picture"
+msgstr "Usar Imagen"
+
+#: forms.py:146
+msgid "Events"
+msgstr ""
+
+#: forms.py:152
+msgid "Languages"
+msgstr "Idiomas"
+
+#: forms.py:179 forms.py:272 forms.py:281 forms.py:303 models.py:220
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: forms.py:198
+msgid "Choose an expertise area"
+msgstr "Escoge otra área"
+
+#: forms.py:200
+msgid "name"
+msgstr "nombre"
+
+#: forms.py:209
+#, fuzzy
+msgid "Choose a language"
+msgstr "Cambiar idioma"
+
+#: forms.py:218
+#, fuzzy
+msgid "Choose a field of work"
+msgstr "Por área de trabajo"
+
+#: forms.py:226
+msgid "Choose an event"
+msgstr "Por evento"
+
+#: forms.py:251
+#, fuzzy
+msgid "Language"
+msgstr "Idiomas"
+
+#: forms.py:264
+msgid "Resend Confirmation Instructions"
+msgstr ""
+
+#: forms.py:271
+#, fuzzy
+msgid "Recover Password"
+msgstr "Reestablecer contraseña"
+
+#: forms.py:282 forms.py:306 forms.py:318 forms.py:330 models.py:224
+msgid "Password"
+msgstr "Contraseña"
+
+#: forms.py:283
+msgid "Remember Me"
+msgstr "Recordar mi información"
+
+#: forms.py:284 templates/main-old.html:19 templates/main.html:46
+#, fuzzy
+msgid "Log in"
+msgstr "Iniciar sesión"
+
+#: forms.py:297 models.py:213
+msgid "First Name"
+msgstr "Nombre"
+
+#: forms.py:299 models.py:216
+msgid "Last Name"
+msgstr "Apellido"
+
+#: forms.py:308 templates/security/login_user.html:30
+msgid "Sign up"
+msgstr "Regístrate"
+
+#: forms.py:316
+#, fuzzy
+msgid "Reset Password"
+msgstr "Reestablecer contraseña"
+
+#: forms.py:321 forms.py:338
+#, fuzzy
+msgid "Retype Password"
+msgstr "Reingresar contraseña"
+
+#: forms.py:334
+#, fuzzy
+msgid "New Password"
+msgstr "Nueva contraseña"
+
+#: forms.py:341 templates/settings.html:9
+#, fuzzy
+msgid "Change Password"
+msgstr "Cambiar contraseña"
+
+#: l10n.py:32
+msgid "You do not have permission to view this resource."
+msgstr "No cuenta con la autorización para ver este recurso."
+
+#: l10n.py:34
+msgid "Thank you. Your email has been confirmed."
+msgstr ""
+
+#: l10n.py:36
+msgid "Your email has already been confirmed."
+msgstr ""
+
+#: l10n.py:38
+#, fuzzy
+msgid "Invalid confirmation token."
+msgstr "Enlace de inicio de sesión inválido"
+
+#: l10n.py:40
+#, python-format
+msgid "%(email)s is already associated with an account."
+msgstr "%(email)s ya está asociado a una cuenta."
+
+#: l10n.py:42
+msgid "Password does not match"
+msgstr "La contraseña no coincide"
+
+#: l10n.py:44
+msgid "Passwords do not match"
+msgstr "Las contraseñas no coinciden"
+
+#: l10n.py:46
+msgid "Redirections outside the domain are forbidden"
+msgstr "Están prohibidas las redirecciones fuera del sitio."
+
+#: l10n.py:48
+#, python-format
+msgid "Instructions to reset your password have been sent to %(email)s."
+msgstr ""
+"Las instrucciones para reestablecer su contraseña han sido enviadas a "
+"%(email)s"
+
+#: l10n.py:50
+#, python-format
+msgid ""
+"You did not reset your password within %(within)s. New instructions have "
+"been sent to %(email)s."
+msgstr ""
+"No reestableció su contraseña en %(within)s. Hemos enviado nuevas "
+"instrucciones a %(email)s."
+
+#: l10n.py:53
+#, fuzzy
+msgid "Invalid reset password token."
+msgstr "Enlace para reestablecer contraseña inválido."
+
+#: l10n.py:55
+msgid "Email requires confirmation."
+msgstr ""
+
+#: l10n.py:57
+#, fuzzy, python-format
+msgid "Confirmation instructions have been sent to %(email)s."
+msgstr "Las instrucciones para iniciar sesión han sido enviadas a %(email)s"
+
+#: l10n.py:59
+#, fuzzy, python-format
+msgid ""
+"You did not confirm your email within %(within)s. New instructions to "
+"confirm your email have been sent to %(email)s."
+msgstr ""
+"No reestableció su contraseña en %(within)s. Hemos enviado nuevas "
+"instrucciones a %(email)s."
+
+#: l10n.py:63
+#, python-format
+msgid ""
+"You did not login within %(within)s. New instructions to login have been "
+"sent to %(email)s."
+msgstr ""
+"No inició sesión en %(within)s. Hemos enviado nuevas instrucciones de "
+"inicio de sesión a %(email)s."
+
+#: l10n.py:66
+#, python-format
+msgid "Instructions to login have been sent to %(email)s."
+msgstr "Las instrucciones para iniciar sesión han sido enviadas a %(email)s"
+
+#: l10n.py:68
+msgid "Invalid login token."
+msgstr "Enlace de inicio de sesión inválido"
+
+#: l10n.py:70
+msgid "Account is disabled."
+msgstr "Su cuenta está deshabilitada."
+
+#: l10n.py:72
+msgid "Email not provided"
+msgstr "No se ha proporcionado la dirección de correo electrónico"
+
+#: l10n.py:74
+#, fuzzy
+msgid "Invalid email address"
+msgstr "Dirección de correo electrónico inválida"
+
+#: l10n.py:76
+msgid "Password not provided"
+msgstr "No se proporcionó contraseña"
+
+#: l10n.py:78
+msgid "No password is set for this user"
+msgstr "No hay una contraseña establecida para este usuario"
+
+#: l10n.py:80
+msgid "Password must be at least 6 characters"
+msgstr "Su contraseña debe ser de al menos 6 caracteres"
+
+#: l10n.py:82
+msgid "Specified user does not exist"
+msgstr "El usuario especificado no existe"
+
+#: l10n.py:84
+#, fuzzy
+msgid "Invalid password"
+msgstr "Contraseña inválida"
+
+#: l10n.py:86
+msgid "You have successfuly logged in."
+msgstr "Ha iniciado sesión de forma exitosa."
+
+#: l10n.py:88
+msgid ""
+"You successfully reset your password and you have been logged in "
+"automatically."
+msgstr ""
+"Ha restablecido su contraseña de forma exitosa y ha iniciado sesión de "
+"forma automática."
+
+#: l10n.py:91
+msgid "Your new password must be different than your previous password."
+msgstr "Su nueva contraseña debe ser distinta a su contraseña anterior."
+
+#: l10n.py:93
+msgid "You successfully changed your password."
+msgstr "Ha cambiado su contraseña de forma exitosa."
+
+#: l10n.py:95
+msgid "Please log in to access this page."
+msgstr "Por favor inicie sesión para obtener acceso a esta página."
+
+#: l10n.py:97
+msgid "Please reauthenticate to access this page."
+msgstr "Por favor auntentifique nuevamente su cuenta para acceder esta página."
+
+#: linkedin.py:147
+msgid "Disconnected from LinkedIn."
+msgstr "Tu cuenta ha sido desconectada de LinkedIn"
+
+#: linkedin.py:168
+msgid "Connection with LinkedIn canceled."
+msgstr "Tu conexión con LinkedIn ha sido cancelada"
+
+#: linkedin.py:177
+msgid "Connection to LinkedIn established."
+msgstr "Su cuenta está ahora conectada a LinkedIn™"
+
+#: models.py:204
+#, fuzzy
+msgid "Username"
+msgstr "nombre"
+
+#: models.py:236
+msgid "Position"
+msgstr "Cargo en su organización"
+
+#: models.py:239
+msgid "Organization"
+msgstr "Organización"
+
+#: models.py:242
+msgid "Type of Organization"
+msgstr "Tipo de Organización"
+
+#: models.py:243
+msgid "The type of organization you work for"
+msgstr "El tipo de organización para la que trabaja"
+
+#: models.py:247
+msgid "Country"
+msgstr "País"
+
+#: models.py:251
+msgid "City"
+msgstr "Ciudad"
+
+#: models.py:255
+msgid "Location"
+msgstr "Ubicación"
+
+#: models.py:256
+msgid "Enter your location"
+msgstr "Ingrese su ubicación"
+
+#: models.py:260
+msgid "Projects"
+msgstr "Proyectos"
+
+#: models.py:261
+msgid "Add name and url or short description of any current work projects."
+msgstr ""
+"Agregue el nombre y una url o breve descripción de sus proyectos de "
+"trabajo actuales."
+
+#: views.py:197
+msgid "Your profile has been saved."
+msgstr "Hemos guardado su perfil."
+
+#: views.py:200
+#, fuzzy
+msgid "Could not save, please correct errors."
+msgstr "No se pudo guardar, por favor corrija los errores"
+
+#: views.py:207
+#, fuzzy
+msgid "Your user picture has been changed."
+msgstr "Hemos guardado su perfil."
+
+#: views.py:208
+msgid "An error occurred when uploading your user picture."
+msgstr ""
+
+#: views.py:210
+msgid "Do you really want to remove your profile picture?"
+msgstr ""
+
+#: views.py:211
+#, fuzzy
+msgid "Your profile picture has been removed."
+msgstr "Hemos guardado su perfil."
+
+#: views.py:212
+msgid "An error occurred when removing your profile picture."
+msgstr ""
+
+#: views.py:346
+msgid "Confirmation instructions sent."
+msgstr ""
+
+#: views.py:368
+msgid "Could not save, please correct errors below"
+msgstr "No se pudo guardar, por favor corrija los siguientes errores"
+
+#: views.py:625
+#, fuzzy
+msgid "Practitioners"
+msgstr "Quienes tienen experiencia práctica"
+
+#: views.py:626
+#, fuzzy
+msgid "Explainers"
+msgstr "Quienes te pueden explicar"
+
+#: views.py:627
+#, fuzzy
+msgid "Connectors"
+msgstr "Quienes te pueden referir"
+
+#: views.py:628
+#, fuzzy
+msgid "Peers"
+msgstr "Quienes son como yo"
+
+#: views.py:776
+msgid "You must log in to post a message."
+msgstr "Usted debe haber iniciado sesión para publicar un mensaje."
+
+#: views.py:778
+msgid "We need your name before you can post a message."
+msgstr "Necesitamos su nombre antes de que pueda publicar un mensaje."
+
+#: views.py:787
+msgid "Message posted!"
+msgstr "¡Mensaje publicado!"
+
+#: views.py:797
+msgid "Loading..."
+msgstr "Cargando…"
+
+#: views.py:881
+#, python-format
+msgid "%(user)s would like you to join the Network of Innovators!"
+msgstr "¡%(user)s quiere que te unas a la red!"
+
+#: views.py:886
+#, python-format
+msgid ""
+"%(user)s has invited you to join the Network of Innovators -- a new "
+"skill-sharing network for government and civic innovators worldwide.\n"
+"\n"
+"Join today. It's FREE. And in just a few minutes, you can get matched "
+"with innovators from around the world.\n"
+"\n"
+"Build your network now at %(url)s."
+msgstr ""
+"%(user)s te invitó a unirte a la Red de Innovadores - una nueva red para "
+"que los innovadores cívicos y de gobiernos de todo el mundo compartan sus"
+" habilidades.\n"
+"\n"
+"Súmate hoy. Es GRATIS. Y sólo en un par de minutos, te podrás conectar "
+"con innovadores de todo el mundo.\n"
+"\n"
+"Construye tu red ahora en %(url)s."
+
+#: views.py:900
+#, fuzzy
+msgid "Invitation sent!"
+msgstr "¡Invitación enviada!"
+
+#: views.py:903
+msgid "Your form submission was invalid."
+msgstr "Su envío del formulario fue inválido."
+
+#: templates/__base_new__.html:19 templates/__base_ui__.html:8
+#: templates/down.html:3 templates/main-old.html:3 templates/main-old2.html:8
+#: templates/admin/master.html:4 templates/security/send_login.html:3
+msgid "Network of Innovators"
+msgstr "Red de Innovadores"
+
+#: templates/__base_ui__.html:24 templates/main.html:26
+msgid "Home"
+msgstr "Inicio"
+
+#: templates/__base_ui__.html:28
+msgid "Match Me"
+msgstr "Conéctame"
+
+#: templates/__base_ui__.html:32 templates/search.html:3
+#: templates/search.html:49
+msgid "Find Innovators"
+msgstr "Personas Innovadoras"
+
+#: templates/__base_ui__.html:37
+msgid "Discuss"
+msgstr "Foro"
+
+#: templates/__base_ui__.html:42 templates/__base_ui__.html:86
+#, fuzzy
+msgid "Share Feedback"
+msgstr "Comentarios y Sugerencias"
+
+#: templates/__base_ui__.html:47
+msgid "View Network"
+msgstr "Mira la Red"
+
+#: templates/__base_ui__.html:57
+msgid "Post an update"
+msgstr "Publica una actualización"
+
+#: templates/__base_ui__.html:62
+msgid ""
+"Have a question to pose to the whole community? Need help with a task? "
+"Ask the Network!"
+msgstr ""
+"¿Tienes una pregunta para toda la comunidad? ¿Necesitas ayuda con una "
+"labor? ¡Pregúntale a la Red!"
+
+#: templates/__base_ui__.html:63
+msgid ""
+"Does anyone have experience with prize-backed challenges relating to "
+"increasing literacy?"
+msgstr ""
+"¿Alguien tiene experiencia con concursos premiados que busquen aumentar "
+"la alfabetización?"
+
+#: templates/__base_ui__.html:64
+msgid "Send"
+msgstr "Enviar"
+
+#: templates/__base_ui__.html:80 templates/my-profile.html:5
+#: templates/my-profile.html:8
+msgid "My Profile"
+msgstr "Mi Perfil"
+
+#: templates/__base_ui__.html:84
+#, fuzzy
+msgid "Add Expertise"
+msgstr "Mis competencias"
+
+#: templates/__base_ui__.html:85 templates/settings.html:5
+msgid "Settings"
+msgstr "Ajustes"
+
+#: templates/__base_ui__.html:88 templates/invite.html:3
+#: templates/invite.html:18
+msgid "Invite Someone"
+msgstr "Invita a alguien"
+
+#: templates/__base_ui__.html:89 templates/faq.html:9
+msgid "FAQ"
+msgstr "Preguntas Frecuentes"
+
+#: templates/__base_ui__.html:90
+#, fuzzy
+msgid "View Tutorials"
+msgstr "Revisar Tutorial"
+
+#: templates/__base_ui__.html:91 templates/about.html:3 templates/about.html:7
+msgid "About"
+msgstr "Acerca de"
+
+#: templates/__base_ui__.html:92 templates/faq.html:30
+#: templates/main-old.html:95 templates/main.html:259
+msgid "Terms of Service"
+msgstr "Términos de Uso"
+
+#: templates/__base_ui__.html:94
+msgid "Admin Panel"
+msgstr ""
+
+#: templates/__base_ui__.html:96
+#, fuzzy
+msgid "Sign Out"
+msgstr "Salir de la sesión"
+
+#: templates/_activity_events.html:10
+#, python-format
+msgid "%(user)s shared:"
+msgstr "%(user)s compartidos"
+
+#: templates/_activity_events.html:14
+msgid "Reply via e-mail"
+msgstr "Responde por correo electrónico"
+
+#: templates/_activity_events.html:21
+#, python-format
+msgid "%(user)s joined NOI."
+msgstr "%(user)s se unió a NOI."
+
+#: templates/_activity_events.html:25
+#, python-format
+msgid "+%(num)d new connection made in NOI."
+msgid_plural "+%(num)d new connections made in NOI."
+msgstr[0] "+%(num)d nueva conexión hecha en NOI."
+msgstr[1] "+%(num)d nuevas conexiones hechas en NOI."
+
+#: templates/_activity_events.html:26
+#, python-format
+msgid "%(total)s connections!"
+msgstr "¡%(total)s conexiones!"
+
+#: templates/_activity_events.html:34
+#, python-format
+msgid "%(user)s posted in Discuss."
+msgstr ""
+
+#: templates/_activity_events.html:46
+msgid "Reply in Discuss"
+msgstr ""
+
+#: templates/_complete_profile_cta.html:3
+msgid "Complete Your Profile"
+msgstr "Complete Su Perfil"
+
+#: templates/_complete_profile_cta.html:6
+msgid ""
+"Let others know your skills & expertise and also get more relevant "
+"matches!"
+msgstr ""
+"¡Deja que otros conozcan tus habilidades y experiencia y obtén conexiones"
+" más relevantes!"
+
+#: templates/_macros.html:8
+msgid ""
+"To select multiple items, hold down the <strong>CTRL</strong> key (or the"
+" Command key on Macs)."
+msgstr ""
+"Para seleccionar varias áreas, presiona la tecla <strong>CTRL</strong> (o"
+" la tecla Command en Macs)."
+
+#: templates/_network-viz.html:16 templates/_network-viz2.html:62
+#: templates/user-profile.html:126
+#, fuzzy, python-format
+msgid "%(count)d questions answered"
+msgstr "Queda %(count)d pregunta"
+
+#: templates/_profile-expertise-match-area.html:20
+#, fuzzy
+msgid "You want to learn this!"
+msgstr "Quiero aprender"
+
+#: templates/_profile-expertise-match-area.html:25
+#, python-format
+msgid "%(user)s can <strong>explain</strong>"
+msgstr "%(user)s lo pueden <strong>explicar</strong>"
+
+#: templates/_profile-expertise-match-area.html:29
+#, python-format
+msgid "%(user)s can <strong>do it</strong>"
+msgstr "%(user)s lo pueden <strong>hacer</strong>"
+
+#: templates/_profile-expertise-match-area.html:33
+#, python-format
+msgid "%(user)s can <strong>connect you</strong>"
+msgstr "%(user)s te pueden <strong>referir</strong>"
+
+#: templates/_profile-expertise-match-area.html:37
+#, python-format
+msgid "%(user)s wants to <strong>learn</strong>"
+msgstr "%(user)s quieren <strong>aprender</strong>"
+
+#: templates/_profile-expertise-match.html:7
+#, python-format
+msgid "You match on %(num)d question"
+msgid_plural "You match on %(num)d questions"
+msgstr[0] "Ustedes son compatibles en %(num)d pregunta"
+msgstr[1] "Ustedes son compatibles en %(num)d preguntas"
+
+#: templates/_profile-progress-item.html:10
+#, python-format
+msgid "%(num)d question left"
+msgid_plural "%(num)d questions left"
+msgstr[0] "Queda %(num)d pregunta"
+msgstr[1] "Quedan %(num)d preguntas\""
+
+#: templates/_profile-questionnaire.html:22 templates/activity.html:131
+#: templates/register-step-2.html:23 templates/register-step-3.html:57
+msgid "Next"
+msgstr "Siguiente"
+
+#: templates/_profile-questionnaire.html:53 templates/register-step-3.html:81
+msgid "Skip this question"
+msgstr "Saltar esta pregunta"
+
+#: templates/about.html:12 templates/faq.html:14
+#, fuzzy
+msgid "What is Network of Innovators?"
+msgstr "Red de Innovadores"
+
+#: templates/about.html:13
+msgid ""
+"Network of Innovators (NoI) is an expert network designed and developed "
+"by The GovLab in collaboration with governance innovation leaders across "
+"eight countries. It makes searchable the know-how of government "
+"innovators on topics integral to governing more effectively and "
+"legitimately, such as open data, citizen engagement and prize-backed "
+"challenges. By answering questions about your governance innovation "
+"skills and experiences, you can be matched to those with complementary "
+"knowledge to enable mutual support and learning."
+msgstr ""
+"Network of Innovators (NoI – Red de innovadores) es una red para "
+"compartir habilidades diseñada y desarrollada por The GovLab en "
+"colaboración con líderes de innovación en gobernanza de ocho países. NoI "
+"permite buscar el conocimiento que tienen los innovadores en temáticas "
+"centrales para gobernar de forma más legítima y efectiva, como los datos "
+"abiertos, la participación ciudadana y los concursos premiados. Al "
+"contestar preguntas sobre tus habilidades y experiencia en innovación en "
+"la gobernanza, NoI te conecta a quienes tienen conocimientos "
+"complementarios a los tuyos para el aprendizaje y apoyo mutuo.\r"
+"\r"
+
+#: templates/about.html:16
+msgid "Who is NoI designed for?"
+msgstr "¿Para quién está diseñado el NoI?"
+
+#: templates/about.html:17
+msgid ""
+"NoI is an expert network for government and civic innovators worldwide "
+"who want to find and collaborate with others who can help them better "
+"solve public problems."
+msgstr ""
+"No es una red para compartir habilidades para los innovadores en el "
+"gobierno y en la sociedad civil en todo el mundo, que quieren encontrar a"
+" otros con quienes colaborar y que les puedan ayudar a resolver los "
+"problemas públicos de mejor manera."
+
+#: templates/about.html:20
+msgid "What problem does NoI aim to solve?"
+msgstr "¿Qué problema busca resolver el NoI?"
+
+#: templates/about.html:21
+msgid ""
+"In large institutions, there is no good way to target opportunities for "
+"collaboration. Professionals working in a variety of contexts - from "
+"regulatory agencies to social innovation labs - have a hard time "
+"identifying who among their colleagues and peers has the experience and "
+"expertise to better solve problems. There are a number of factors feeding"
+" into this reality:"
+msgstr ""
+"En las instituciones grandes, no hay una buena manera para enfocar las "
+"oportunidades para la colaboración. A los profesionales que trabajan en "
+"una variedad de contextos - desde las agencias regulatorias a los "
+"laboratorios de innovación social - se les hace difícil identificar quién"
+" entre sus colegas tiene la experiencia y los conocimientos para resolver"
+" los problemas de mejor manera. Hay una serie de factores que originan "
+"esta situación:"
+
+#: templates/about.html:23
+msgid "Titles and credentials don’t capture real world know-how."
+msgstr ""
+"Los títulos y credenciales no capturan el conocimiento adquirido con la "
+"experiencia."
+
+#: templates/about.html:24
+msgid ""
+"Government projects or public-private partnerships are typically branded "
+"as institutional achievements."
+msgstr ""
+"Los proyectos gubernamentales o las alianzas público-privadas son "
+"promovidas como logros institucionales."
+
+#: templates/about.html:25
+msgid ""
+"There is a lack of well developed taxonomies of  skills for new domain "
+"areas of government, like open data or prize-backed challenges."
+msgstr ""
+"Hay una falta de taxonomías bien desarrolladas de las habilidades en "
+"nuevos cambios del gobierno, como los datos abiertos o los concursos "
+"premiados."
+
+#: templates/about.html:29
+msgid "What is the goal of NoI?"
+msgstr "¿Cuál es la meta de NoI?"
+
+#: templates/about.html:30
+msgid ""
+"NoI aims to organize and develop the taxonomy of innovation practices. "
+"Through ongoing engagement with governance innovation practitioners from "
+"around the world, we are continuing to refine NoI with a focus on "
+"capturing the most impactful and desirable innovation skills for public "
+"servants today."
+msgstr ""
+"NoI busca organizar y desarrollar la taxonomía de las prácticas de "
+"innovación. A través de una participación continua con los "
+"implementadores de innovaciones en la gobernanza en todo el mundo, "
+"estamos mejorando NoI con el foco en capturar las habilidades de "
+"innovación que tengan mayor impacto y que sean más deseadas por los "
+"servidores públicos actuales."
+
+#: templates/about.html:31
+msgid "21st Century Innovation Skillsets:"
+msgstr "Conjuntos de habilidades del Siglo 21:"
+
+#: templates/about.html:54
+msgid "Randomized Control Trials"
+msgstr "Ensayos Controlados Aleatorios"
+
+#: templates/about.html:58
+msgid "Prize-Backed Challenges"
+msgstr "Ejecutando un Concurso Premiado"
+
+#: templates/about.html:68
+msgid "About The GovLab"
+msgstr "Sobre The GovLab"
+
+#: templates/about.html:69
+msgid ""
+"The GovLab is an action research institute at New York University. Our "
+"goal is to strengthen the ability of institutions, governments and people"
+" to work more openly, collaboratively, and legitimately to solve public "
+"problems. We believe that increased use of data, new ways to leverage the"
+" skills and expertise of individuals, combined with advances in science "
+"and technology can transform governance. We approach each challenge in an"
+" interdisciplinary and collaborative way, irrespective of the problem, "
+"sector or geography."
+msgstr ""
+"The GovLab es un centro de investigación y proyectos de la Universidad de"
+" Nueva York. Nuestro objetivo es fortalecer la capacidad de las "
+"instituciones, entre ellas los gobiernos, y de la gente para trabajar de "
+"una manera más abierta, colaborativa, eficaz y legítima para tomar "
+"mejores decisiones y resolver problemas públicos. Creemos que una mayor "
+"disponibilidad y uso de datos, nuevas formas de hacer uso de la "
+"capacidades, inteligencia y experiencia de la gente que participa del "
+"proceso de resolución de problemas, junto con nuevos avances en ciencia y"
+" tecnología pueden transformar la gobernanza. Abordamos cada desafío y "
+"oportunidad de una forma interdisciplinaria y colaborativa,  sin importar"
+" el problema, el sector, la geografía y el nivel de gobierno.\r"
+"\r"
+
+#: templates/activity.html:13
+msgid "Activity"
+msgstr "Actividad"
+
+#: templates/activity.html:14
+msgid "Most Connected"
+msgstr "Más Conectados"
+
+#: templates/activity.html:15
+msgid "Most Complete Profiles"
+msgstr "Perfiles Más Completos"
+
+#: templates/activity.html:19
+msgid "My Profile Progress"
+msgstr "Mi avance de Perfil"
+
+#: templates/activity.html:79
+#, fuzzy, python-format
+msgid "%(num)d Connection"
+msgid_plural "%(num)d Connections"
+msgstr[0] "%(num)d conexión"
+msgstr[1] "%(num)d conexiones"
+
+#: templates/activity.html:124
+msgid "OK"
+msgstr "OK"
+
+#: templates/activity.html:127
+msgid "Dismiss Forever"
+msgstr "Descartar para Siempre"
+
+#: templates/activity.html:145
+#, python-format
+msgid "Welcome <strong>%(first_name)s</strong>!"
+msgstr "Bienvenido/a <strong>%(first_name)s</strong>!"
+
+#: templates/activity.html:146
+msgid ""
+"You can <strong>meet your top matches</strong> based on your skills and "
+"interests."
+msgstr ""
+"Puedes <strong>conocer a tus conexiones más importantes</strong> según "
+"tus habilidades e intereses."
+
+#: templates/activity.html:150
+msgid ""
+"<strong>Find innovators</strong> by expertise area, location, event or "
+"other search term."
+msgstr "Encuentra a personas innovadoras por área de conocimiento, ubicación geográfica, evento u otro término de búsqueda."
+
+#: templates/activity.html:156
+msgid ""
+"Have a question or something to share with the network? <strong>Discuss "
+"it</strong> with like-minded innovators in one of our channels! You can "
+"change your discussion username in <a href='./me'>Edit Profile.</a>"
+msgstr "¿Tienes una pregunta o algo que compartir con la comunidad? ¡Interactúa con personas innovadoras como tú en nuestro foro de discusión! Puedes cambiar tu nombre de usuario/a del foro en <a href='./me'>Editar Perfil.</a>"
+
+#: templates/activity.html:160 templates/activity.html:166
+msgid "Don't forget to <strong>update your profile</strong>."
+msgstr "No te olvides de <strong>actualizar tu perfil</strong>."
+
+#: templates/activity.html:161 templates/activity.html:167
+msgid "The more questions you answer, the more relevant your matches."
+msgstr "Mientras más preguntas respondas, más relevantes serán tus conexiones."
+
+#: templates/down.html:22
+msgid ""
+"Network of Innovators is down for scheduled maintenance and upgrade. "
+"Please check back again soon, or visit <a href=\"http://www.thegovlab.org"
+"/project-network-of-innovators.html\" class=\"m-text-"
+"link\">thegovlab.org</a> to learn more."
+msgstr ""
+
+#: templates/down.html:75 templates/main-old.html:80
+msgid "in collaboration with innovation teams from governments of"
+msgstr "En colaboración con equipos de innovación de los gobiernos de"
+
+#: templates/faq.html:3
+msgid "Frequently Asked Questions"
+msgstr "Preguntas Frecuentes"
+
+#: templates/faq.html:15
+msgid ""
+"Network of Innovators (NOI) is an expert network designed and developed "
+"by The GovLab in collaboration with governance innovation leaders across "
+"eight countries. It makes searchable the know-how of government "
+"innovators on topics integral to governing more effectively and "
+"legitimately, such as open data, citizen engagement and prize-backed "
+"challenges. By answering questions about your governance innovation "
+"skills and experiences, you can be matched to those with complementary "
+"knowledge to enable mutual support and learning."
+msgstr ""
+"Network of Innovators (NoI – Red de innovadores) es una red para "
+"compartir habilidades diseñada y desarrollada por The GovLab en "
+"colaboración con líderes de innovación en gobernanza de ocho países. NoI "
+"permite buscar el conocimiento que tienen los innovadores en temáticas "
+"centrales para gobernar de forma más legítima y efectiva, como los datos "
+"abiertos, la participación ciudadana y los concursos premiados. Al "
+"contestar preguntas sobre tus habilidades y experiencia en innovación en "
+"la gobernanza, NoI te conecta a quienes tienen conocimientos "
+"complementarios a los tuyos para el aprendizaje y apoyo mutuo."
+
+#: templates/faq.html:16
+msgid ""
+"NOI attempts to get at what you know by asking the kinds of questions you"
+" can answer. You can specify the expertise you have and want to share: "
+"whether you have the ability to do something, to tell someone about it, "
+"or to connect someone to others knowledgeable about a topic."
+msgstr ""
+"NoI intenta captar lo que sabes preguntándote el tipo de preguntas que "
+"puedes contestar. Puedes especificar la experiencia que tienes y que "
+"quieres compartir: si tienes la habilidad para hacer algo, para "
+"explicarle a alguien o para referir a alguna persona que conoces y que "
+"sepa sobre esa materia."
+
+#: templates/faq.html:19
+msgid "Who is Network of Innovators for?"
+msgstr "¿Para quién es la Red de Innovadores?"
+
+#: templates/faq.html:20
+msgid ""
+"NoI is an expert network for government and civic innovators worldwide "
+"who want to find and collaborate with others who can help them better "
+"solve public problems. NoI is especially targeted at internal government "
+"innovators looking to connect with like-minded experts and practitioners."
+msgstr ""
+"NoI es una red para compartir habilidades entre innovadores "
+"gubernamentales y cívicos de todo el mundo que quieren buscar a otros "
+"para colaborar con ellos en la resolución de problemas públicos. NoI está"
+" enfocado específicamente en innovadores gubernamentales que estén "
+"buscando conectarse con otros colegas del área."
+
+#: templates/faq.html:23
+msgid "Why not just use LinkedIn?"
+msgstr "¿Por qué simplemente no usamos LinkedIn?"
+
+#: templates/faq.html:24
+msgid ""
+"LinkedIn, among other networks, are built to help people share their "
+"expertise. Such networks, however, focus largely on traditional means of "
+"measuring expertise – namely academic credentials and job titles. The "
+"Network of Innovators project, in addition to giving individuals the "
+"ability to articulate and search for more specific expertise within topic"
+" areas, defines expertise more broadly and aims to make skills, "
+"experiences, and know how searchable."
+msgstr ""
+"LinkedIn, como muchas otras redes, están hechas para ayudar a las "
+"personas a compartir su experiencia. Esas redes, sin embargo, se enfocan "
+"mayoritariamente en las formas tradicionales de medir la experiencia: las"
+" credenciales académicas y los cargos en el trabajo. El proyecto de la "
+"Red de Innovadores define la experiencia de forma más amplia y busca que "
+"facilitar la búsqueda de las habilidades, experiencia y el saber-hacer. "
+"Además ofrece la posibilidad de explicar y buscar habilidades específicas"
+" dentro de áreas temáticas."
+
+#: templates/faq.html:28
+msgid "Who can see my information?"
+msgstr "¿Quién puede ver mi información?"
+
+#: templates/faq.html:32
+#, python-format
+msgid ""
+"Your NoI profile is visible to all other users of NoI – including "
+"innovators across governments and governance innovators outside in public"
+" sector. You can read more in the NoI %(toc_link)s. If you have received "
+"abusive, solicitous or otherwise irrelevant messages from other members "
+"of NoI, please report your issue to %(contact_link)s."
+msgstr ""
+"Tu perfil de NoI es visible a todos los otros usuarios de NoI, incluyendo"
+" innovadores que están dentro y fuera del gobierno. Puedes leer más en "
+"%(toc_link)s. Si has recibido mensajes abusivos o irrelevantes de otros "
+"miembros del NoI, por favor repórtalo a %(contact_link)s."
+
+#: templates/faq.html:36
+msgid "How will my data be used?"
+msgstr "¿Cómo se usarán mis datos?"
+
+#: templates/faq.html:37
+#, python-format
+msgid ""
+"The information you share on NoI will be used solely for the platform’s "
+"purpose – enabling connections between government innovators – and "
+"anonymous NoI usage analysis. Your data will not be shared with any third"
+" parties, and no information will remain in the NoI database should you "
+"chose to delete your account. For more information on NoI’s data usage "
+"and control, please contact %(contact_link)s."
+msgstr ""
+"La información que compartirás en Noi será usada solamente para el "
+"propósito de la plataforma - facilitar conexiones entre innovadores "
+"gubernamentales y para análisis anónimos de uso del Noi. Tus datos no "
+"serán compartidos con terceras personas o entidades. Si decides eliminar "
+"tu cuenta, tu información no permanecerá en la base de datos del NoI. "
+"Para más información sobre el uso y control de datos en NoI, por favor "
+"contacta a %(contact_link)s."
+
+#: templates/faq.html:41
+msgid "How will you build and improve Network of Innovators?"
+msgstr "¿Cómo construirán y mejorarán a la Red de Innovadores?"
+
+#: templates/faq.html:42
+msgid ""
+"An expert network focused on enabling the exchange of knowledge requires "
+"participation from both people looking to find expertise and those ready "
+"to share what they know. To ensure that NoI reaches this optimal level of"
+" engagement – and continues to grow and evolve – the GovLab is conducting"
+" ongoing outreach to governance innovators at relevant conferences and "
+"events, through online media channels, and through direct outreach to "
+"innovation champions in institutions throughout the world."
+msgstr ""
+"Una red para compartir habilidades que está enfocada en facilitar el "
+"intercambio de conocimientos requiere participación tanto de personas "
+"buscando conocimientos como aquellas personas que están dispuestas a "
+"compartir lo que saben. Para asegurarnos de que NoI alcance este nivel "
+"óptimo de participación, y que continúe creciendo y evolucionando, The "
+"GovLab está contactándose constantemente con innovadores en conferencias "
+"y eventos pertinentes. También utiliza canales de comunicación online y "
+"comunicación directa a los líderes de innovación en diferentes "
+"instituciones en el mundo."
+
+#: templates/faq.html:43
+#, python-format
+msgid ""
+"You can <a href='%(invite_url)s'>invite an innovator</a> you know to join"
+" NoI."
+msgstr ""
+"Puedes <a href='%(invite_url)s'>invitar a un innovadorr</a> que conoces a"
+" unirse a NoI."
+
+#: templates/faq.html:47
+msgid "Why do I need to answer questions about what I know?"
+msgstr "¿Por qué necesito contestar preguntas sobre lo que sé?"
+
+#: templates/faq.html:48
+msgid ""
+"NoI is premised on the belief that simple tags (e.g., my skills are “open"
+" data” and “crowdsourcing”) do not adequately capture the full gamut of "
+"experience and know how possessed by governance innovators. To help move "
+"beyond free-form tags, NoI asks you to note if and how you could answer a"
+" specific innovation question from someone looking to access your "
+"expertise. This approach, we believe, will help you to better describe "
+"the range and nuance of your innovation expertise, and enable more "
+"fruitful connections with others on NoI."
+msgstr ""
+"NoI se basa en la premisa de que las etiquetas simples (por ej, mis "
+"habilidades son “datos abiertos” y “crowdsourcing”) no transmiten "
+"adecuadamente las habilidades y experiencias que tienen los innovadores "
+"en gobernanza. Para ir más allá de las etiquetas libres, NoI te pide que "
+"contestes una pregunta específica de innovación desde el punto de vista "
+"de alguien que quisiera acceder a tus conocimientos y experiencias. "
+"Creemos que este enfoque te ayudará a describir mejor el rango y las "
+"sutilezas de tu experiencia en innovación, y facilitará conexiones más "
+"fructíferas con otros en NoI."
+
+#: templates/faq.html:52
+msgid "How does your matching algorithm work?"
+msgstr "¿Cómo funciona el algoritmo que conecta a las personas?"
+
+#: templates/faq.html:53
+msgid ""
+"NOI uses the answers you give to the innovation skill questions to match "
+"you with others from whom you can learn the most. Based on all innovation"
+" skills that you answer “I want to learn”, NOI’s algorithm ranks the "
+"innovators in the network who can do, explain or connect you on most of "
+"them. This is also how others who can learn the most from your expertise "
+"will be able to find and consult with you."
+msgstr ""
+"NoI usa las respuestas que das a las preguntas sobre habilidades de "
+"innovación para conectarte con otros de los cuales puedes aprender. "
+"Tomando como base todas las habilidades de innovación par las cuales "
+"contestas “Quiero aprender”, el algoritmo de NoI ordena los innovadores "
+"en la red que pueden hacer, explicar o referirte en la mayoría de las "
+"preguntas. Así también es como otros quienes pueden aprender más de tu "
+"experiencia podrán encontrarte a ti y hacerte consultas."
+
+#: templates/faq.html:57
+msgid ""
+"Why were these governance innovation topics chosen, and will more "
+"innovation areas be added to NoI?"
+msgstr ""
+"¿Por qué escogieron estas áreas de innovación en la gobernanza? "
+"¿Agregarán más áreas al Noi?"
+
+#: templates/faq.html:58
+msgid ""
+"The innovation topic questionnaires found on NoI were identified and "
+"developed by the GovLab and its governance innovation partners across "
+"eight countries. The innovation areas and the profile-creation questions "
+"included for each topic were carefully crafted and iterated upon through "
+"detailed research into the current state of governance innovation around "
+"the world and, importantly, ongoing outreach and discussion with "
+"governance innovation practitioners around the world."
+msgstr ""
+"Los cuestionarios de innovación por área que están en NoI fueron "
+"identificados y desarrollados por The GovLab y sus socios de innovación "
+"en la gobernanza de ocho países. Las áreas de innovación y las preguntas "
+"para crear los perfiles fueron diseñadas cuidadosamente e iteradas a "
+"través de investigación acuciosa sobre el estado actual de la innovación "
+"en gobernanza en todo el mundo, y a través del contacto y discusión con "
+"ejecutores de innovación en gobernanza en el mundo."
+
+#: templates/faq.html:59
+#, python-format
+msgid ""
+"To suggest the addition of another innovation topic, contact us at "
+"%(contact_link)s."
+msgstr "Para sugerir una nueva área de innovación, contáctanos a %(contact_link)s."
+
+#: templates/faq.html:63
+msgid "Who created NoI?"
+msgstr "¿Quién creó NoI?"
+
+#: templates/faq.html:64
+msgid ""
+"NoI was developed by The Governance Lab @ NYU (GovLab), in partnership "
+"with governance innovation leaders across eight countries."
+msgstr ""
+"Network of Innovators (NoI – Red de innovadores) fue desarrollado por The"
+" Governance Lab de la Universidad de Nueva York, en colaboración con "
+"líderes de innovación en gobernanza de ocho países."
+
+#: templates/faq.html:65
+msgid ""
+"The GovLab’s mission is « to improve people’s lives by changing the way "
+"we govern »."
+msgstr ""
+"La misión de The GovLab es mejorar la vida de las personas cambiando la "
+"forma de gobernar."
+
+#: templates/faq.html:66
+msgid ""
+"Our goal is to strengthen the ability of institutions – including but not"
+" limited to governments – and people to work more openly, "
+"collaboratively, effectively and legitimately to make better decisions "
+"and solve public problems."
+msgstr ""
+"Nuestro objetivo es fortalecer la capacidad de las instituciones, entre "
+"ellas los gobiernos, y de la gente para trabajar de una manera más "
+"abierta, colaborativa, eficaz y legítima para tomar mejores decisiones y "
+"resolver problemas públicos."
+
+#: templates/faq.html:67
+msgid ""
+"We believe that increased availability and use of data, new ways to "
+"leverage the capacity, intelligence, and expertise of people in the "
+"problem-solving process, combined with new advances in technology and "
+"science can transform governance. Learn more at <a "
+"href='http://thegovlab.org'>thegovlab.org</a>."
+msgstr ""
+"Creemos que una mayor disponibilidad y uso de datos, nuevas formas de "
+"hacer uso de la capacidades, inteligencia y experiencia de la gente que "
+"participa del proceso de resolución de problemas, junto con nuevos "
+"avances en ciencia y tecnología pueden transformar la gobernanza. Conoce "
+"más en <a href='http://thegovlab.org'>thegovlab.org</a>."
+
+#: templates/faq.html:71
+msgid "How can I contact you?"
+msgstr "¿Cómo te puedo contactar?"
+
+#: templates/faq.html:72
+#, python-format
+msgid ""
+"Suggestions for improving NoI? Found a bug? Questions on how to make the "
+"most of the network? We’d love to hear from you! Contact us at "
+"%(contact_link)s and/or fill out our <a href='%(feedback_url)s'>feedback "
+"form</a>."
+msgstr ""
+"¿Tienes sugerencias para mejorar NoI? ¿Encontraste un error? ¿Tienes "
+"preguntas respecto de cómo sacarle provecho a la red? ¡Nos encantaría "
+"saber de ti! Contáctanos a %(contact_link)s o completa nuestro <a "
+"href='%(feedback_url)s'>formulario de retroalimentación</a>."
+
+#: templates/feedback.html:13
+msgid "Feedback"
+msgstr "Comentarios y Sugerencias"
+
+#: templates/feedback.html:18
+msgid "Share your feedback about the Network of Innovators"
+msgstr "Comparte tus comentarios y sugerencias sobre la Red de Innovadores"
+
+#: templates/invite.html:21
+msgid "Suggest someone to join the network"
+msgstr "Sugiérele a alguien unirse a la red"
+
+#: templates/invite.html:29
+msgid "Invite"
+msgstr "Invitar"
+
+#: templates/main-old.html:16 templates/main.html:41 templates/settings.html:24
+#, fuzzy
+msgid "Change Language"
+msgstr "Cambiar idioma"
+
+#: templates/main-old.html:22
+msgid "The skill-sharing network for government & civic innovators worldwide"
+msgstr ""
+"La red para compartir habilidades para innovadores gubernamentales y "
+"cívicos del mundo"
+
+#: templates/main-old.html:23 templates/main-old.html:93 templates/main.html:61
+#: templates/main.html:257
+msgid "Get Started"
+msgstr "Comienza aquí"
+
+#: templates/main-old.html:34
+msgid ""
+"<strong>Select an innovation area</strong> to answer questions about what"
+" you know and can share with others. Telling us about your innovation "
+"skills enables you to get matched to those with complementary expertise."
+msgstr ""
+"<strong>Selecciona un área de innovación</strong> y contesta las "
+"preguntas sobre lo que sabes y lo que puedes compartir con otros. Cuando "
+"nos cuentas sobre tus habilidades de innovación nos permites conectarte "
+"con aquellos que tienen experiencias y conocimiento complementario. "
+
+#: templates/main-old.html:39 templates/main.html:106
+msgid "Crowdsourcing"
+msgstr "Crowdsourcing"
+
+#: templates/main-old.html:42 templates/main.html:124
+msgid "Data Science"
+msgstr "Ciencia de Datos"
+
+#: templates/main-old.html:45 templates/main.html:94
+msgid "Community Engagement"
+msgstr "Participación Comunitaria"
+
+#: templates/main-old.html:48 templates/main.html:112
+msgid "Lab Design"
+msgstr "Diseño de laboratorios"
+
+#: templates/main-old.html:51 templates/main.html:100
+msgid "Citizen Science"
+msgstr "Ciencia Ciudadana"
+
+#: templates/main-old.html:54 templates/main.html:88
+msgid "Open Data"
+msgstr "Datos Abiertos"
+
+#: templates/main-old.html:57 templates/main.html:118
+msgid "Prizes"
+msgstr "Premios"
+
+#: templates/main-old.html:60 templates/main.html:130
+msgid "Randomized Controlled Trials"
+msgstr "Ensayos controlados aleatorios "
+
+#: templates/main-old.html:68
+msgid ""
+"<strong>Find Innovators</strong> who know what you don’t and who want to "
+"learn what you can share."
+msgstr ""
+"<strong>Encuentra a los innovadores</strong> que saben lo que no sabes y "
+"que quieren aprender sobre lo que tú puedes compartir. "
+
+#: templates/main-old.html:70
+msgid ""
+"<strong>Visualize your knowledge</strong> of innovative problem solving "
+"practices to see what you know, compare to others, and see the skillset "
+"of a 21st century innovator."
+msgstr ""
+"<strong>Visualiza tu conocimiento</strong> de las prácticas innovadoras "
+"para resolver problemas para ver qué sabes, compararte a otros y ver el "
+"conjunto de habilidades de un innovador del Siglo 21."
+
+#: templates/main-old.html:75
+msgid ""
+"<strong>Build your own network of innovators</strong> and find the right "
+"collaborators for your project!"
+msgstr ""
+"¡</strong> Construye tu propia red de innovadores</strong> y encuentra a "
+"los colaboradores adecuados para tu proyecto!"
+
+#: templates/main-old.html:94
+msgid "Learn more"
+msgstr "Aprende más"
+
+#: templates/main.html:59
+msgid "The skill-sharing network for government &amp; civic innovators worldwide"
+msgstr ""
+"La red para compartir habilidades para innovadores gubernamentales y "
+"cívicos del mundo"
+
+#: templates/main.html:75
+msgid ""
+"Build your own network of innovators and find the right collaborators for"
+" your project!"
+msgstr ""
+"¡Contruye tu propia Red de Innovadores y encuentra a las y los colaboradores adecuados para tu proyecto!"
+
+#: templates/main.html:81
+msgid ""
+"Answer questions about what you know and can share with others. Telling "
+"us about your innovation skills enables you to get matched to those with "
+"complementary expertise."
+msgstr ""
+"Responde las preguntas sobre lo que sabes y compártelo con la comunidad. Compartirnos cuáles son tus habilidades en temas de innovación, nos permite conectarte con otras personas que tienen conocimientos complementarios a los tuyos."
+
+#: templates/main.html:138
+msgid "Visualize your knowledge"
+msgstr "Visualiza tu conocimiento"
+
+#: templates/main.html:139
+msgid ""
+"Visualize your knowledge of innovative problem solving practices to see "
+"what you know, compare to others, and see the skillset of a 21st century "
+"innovator."
+msgstr ""
+"Visualiza tu conocimiento de prácticas innovadoras para resolver problemas para saber qué sabes, compararte con la comunidad y ver las habilidades de las y los innovadores del Siglo 21."
+
+#: templates/main.html:149
+msgid "News"
+msgstr "Noticias"
+
+#: templates/main.html:150
+msgid ""
+"Get access to stories written and curated specifically for Network of "
+"Innovators users."
+msgstr "Obtén acceso a historias escritas y seleccionadas específicamente para la comunidad de la Red de Innovadores."
+
+#: templates/main.html:181
+msgid "Find innovators"
+msgstr "Encuentra a innovadores e innovadoras"
+
+#: templates/main.html:182
+msgid ""
+"Find innovators who know what you don’t and who want to learn what you "
+"can share."
+msgstr ""
+"Encuentra a personas innovadoras que saben lo que tú no sabes y que quieren aprender de lo que tú les puedes compartir"
+
+#: templates/main.html:243
+msgid "In collaboration with innovation teams from governments of"
+msgstr "En colaboración con los equipos de innovación de los gobiernos de"
+
+#: templates/main.html:258
+msgid "Learn More"
+msgstr "Aprende más"
+
+#: templates/main.html:268
+msgid ""
+"This work is licensed under a <a rel=\"license\" "
+"href=\"http://creativecommons.org/licenses/by-sa/4.0/\">Creative Commons "
+"Attribution-ShareAlike 4.0 International License</a> <br> <a "
+"href=\"#\">Copyright Infringement Information</a>."
+msgstr ""
+
+#: templates/match-me.html:6
+msgid "Your Practitioners"
+msgstr "Quienes tienen experiencia práctica"
+
+#: templates/match-me.html:7
+msgid "Your Explainers"
+msgstr "Quienes te pueden explicar"
+
+#: templates/match-me.html:8
+#, fuzzy
+msgid "Your Connectors"
+msgstr "Quienes te pueden referir"
+
+#: templates/match-me.html:9
+msgid "Your Peers"
+msgstr "Quienes quieren aprender"
+
+#: templates/match-me.html:18
+msgid ""
+"Connectors know others who can answer your questions. Ask them to "
+"introduce you!"
+msgstr ""
+"Ellos/as conocen a otras personas que pueden contestar tus preguntas. "
+"¡Pídeles que te refieran! "
+
+#: templates/match-me.html:20
+msgid "Peers want to learn the same things as you. Why don't you join forces?"
+msgstr ""
+"Ellos/as quieren aprender las mismas cosas que tú. ¿Por qué no suman "
+"esfuerzos?"
+
+#: templates/match-me.html:22
+msgid "Explainers know what you want to learn. Ask them to guide you!"
+msgstr "Ellos/as saben lo que tú quieres aprender. ¡Pídeles que te guíen!"
+
+#: templates/match-me.html:24
+msgid ""
+"Practitioners have experience in what you want to learn. Ask them to "
+"share their experiences!"
+msgstr ""
+"Ellos/as tienen experiencia en las áreas en que quieres aprender. "
+"¡Pídeles que compartan sus experiencias!"
+
+#: templates/match-me.html:47
+#, python-format
+msgid "%(num)d Skill Match"
+msgid_plural "%(num)d Skill Matches"
+msgstr[0] "%(num)d conexión de habilidades"
+msgstr[1] "%(num)d conexiones de habilidades"
+
+#: templates/match-me.html:56
+msgid "You currently have no matches."
+msgstr "Actualmente no tienes conexiones."
+
+#: templates/match-me.html:57
+#, python-format
+msgid ""
+"Matches are created between users that want to learn and users that can "
+"do, explain, or connect. To get matched, go to the <a "
+"href=\"%(expertise_url)s\">Expertise</a> area of your profile and answer "
+"questions in areas you want to learn about."
+msgstr ""
+"Las conexiones se crean entre usuarios que quieren aprender sobre un tema"
+" y usuarios que pueden hacerlo, explicarlo o referir a alguien. Para "
+"obtener conexiones, ingresa a tu perfil, haz clic en <a "
+"href=\"%(expertise_url)s\">Mis Competencias</a> y contesta preguntas "
+"sobre las áreas que quieres aprender."
+
+#: templates/my-profile.html:37
+#, python-format
+msgid "Connect to <img alt=\"LinkedIn\" %(img_attrs)s>"
+msgstr "Conéctate a <img alt=\"LinkedIn\" %(img_attrs)s>"
+
+#: templates/my-profile.html:43
+msgid ""
+"Filling out your profile is easier than ever! Connect your account to "
+"LinkedIn&trade; to pre-fill some of the form fields below. Connecting to "
+"LinkedIn&trade; will also allow others to see your LinkedIn&trade; "
+"profile."
+msgstr ""
+"¡Llenar tu perfil es más fácil que nunca! Conecta tu cuenta de Network of"
+" Innovators con tu cuenta de LinkedIn™ para pre-llenar algunos de los "
+"campos del formulario. El conectar tus cuentas también permitirá que las "
+"y los usuarios de Network of Innovators puedan ver tu perfil de LinkedIn™"
+
+#: templates/my-profile.html:65
+msgid "Save"
+msgstr "Guardar"
+
+#: templates/my-profile.html:72
+#, python-format
+msgid ""
+"Your account is currently connected to LinkedIn&trade;, which allows "
+"others to see your LinkedIn&trade; profile. You can <a "
+"%(a_attrs)s>disconnect from LinkedIn&trade;</a> at any time to disable "
+"this."
+msgstr ""
+"Tu cuenta de Network of Innovators está actualmente conectada a tu cuenta"
+" de LinkedIn™, lo que permite que las y los usuarios de Network of "
+"Innovators puedan ver tu perfil de LinkedIn™. Para desactivar esta "
+"función, puedes <a %(a_attrs)s>desconectar</a> las cuentas en cualquier "
+"momento. "
+
+#: templates/register-step-1.5.html:3 templates/security/register_user.html:3
+msgid "Register"
+msgstr "Registrarse"
+
+#: templates/register-step-1.5.html:13
+#, python-format
+msgid ""
+"To improve security, we now require you to confirm your e-mail address at"
+" %(email)s."
+msgstr ""
+
+#: templates/register-step-1.5.html:14
+msgid "Send confirmation e-mail"
+msgstr ""
+
+#: templates/register-step-1.5.html:16
+msgid "Please check your inbox to confirm your e-mail address."
+msgstr ""
+
+#: templates/register-step-1.5.html:17
+msgid "Re-send confirmation e-mail"
+msgstr ""
+
+#: templates/register-step-1.5.html:26 templates/register-step-2.html:29
+msgid "Logout"
+msgstr "Salir"
+
+#: templates/register-step-2.html:3
+msgid "Register - Basic Information"
+msgstr "Registrarse - Información Básica"
+
+#: templates/register-step-2.html:12
+msgid ""
+"Now please share some basic info about yourself, so others can know who "
+"you are."
+msgstr ""
+"Por favor comparte algo de información básica sobre ti, para que otros "
+"sepan quién eres."
+
+#: templates/register-step-3.html:4
+msgid "My Expertise"
+msgstr "Mis Competencias"
+
+#: templates/register-step-3.html:32
+msgid "Pick an innovation area that you're interested in:"
+msgstr "Escoge un área de innovación que te interese"
+
+#: templates/register-step-3.html:55
+#, python-format
+msgid ""
+"Now answer %(num)s questions about your experience in this area to join "
+"the network and get matched with other innovators!"
+msgstr ""
+"¡Ahora responde %(num)s preguntas sobre tu experiencia en esta área para "
+"unirte a la red y conectarte con otros innovadores!"
+
+#: templates/register-step-3.html:56
+msgid ""
+"You can always answer more questions by going to your profile page to get"
+" new and more relevant matches."
+msgstr ""
+"Siempre podrás responder más preguntas en tu página de perfil para "
+"obtener conexiones nuevas y más relevantes."
+
+#: templates/register-step-3.html:89
+om
+msgstr "Iniciar sesión"
+
+#: templates/register-step-3.html:95
+msgid "Choose another area"
+msgstr "Por evento"
+
+#: templates/search.html:27
+msgid "By expertise area"
+msgstr "Mis competencias"
+
+#: templates/search.html:31
+msgid "By country"
+msgstr "Por país"
+
+#: templates/search.html:35
+msgid "By language"
+msgstr "Por idioma(s)"
+
+#: templates/search.html:39
+msgid "By field of work"
+msgstr "Por área de trabajo"
+
+#: templates/search.html:43
+msgid "By event"
+msgstr "Por evento"
+
+#: templates/search.html:47
+msgid "By Keyword"
+msgstr "Por palabra clave"
+
+#: templates/search.html:48
+msgid "Enter organization, name, or keywords here"
+msgstr "Organizaciones, nombre o palabra clave"
+
+#: templates/settings.html:13
+msgid "Reset Tutorial"
+msgstr "Revisar Tutorial"
+
+#: templates/user-profile.html:3
+#, python-format
+msgid "%(user)s's Profile"
+msgstr "%(user)s's Perfil"
+
+#: templates/user-profile.html:10
+msgid "Overview"
+msgstr "Visión general"
+
+#: templates/user-profile.html:11
+#, fuzzy
+msgid "Expertise"
+msgstr "Mis competencias"
+
+#: templates/user-profile.html:83
+msgid "You are an <strong>explainer</strong> of:"
+msgstr "Puedes <strong>explicar</strong> lo siguiente:"
+
+#: templates/user-profile.html:85
+msgid "You are a <strong>practitioner</strong> of:"
+msgstr "Tienes <strong>experiencia práctica</strong> en:"
+
+#: templates/user-profile.html:87
+msgid "You are a <strong>connector</strong> of:"
+msgstr "Puedes <strong>referir a otras personas</strong> en estas temáticas:"
+
+#: templates/user-profile.html:89
+msgid "You are a <strong>peer</strong> of:"
+msgstr "Quieres <strong>aprender más</strong> sobre:"
+
+#: templates/user-profile.html:93
+#, fuzzy, python-format
+msgid "Ask %(user)s to <strong>explain</strong>:"
+msgstr "%(user)s lo pueden <strong>explicar</strong>"
+
+#: templates/user-profile.html:95
+#, fuzzy, python-format
+msgid "Ask %(user)s to <strong>share experiences</strong> in:"
+msgstr "%(user)s lo pueden <strong>explicar</strong>"
+
+#: templates/user-profile.html:97
+#, fuzzy, python-format
+msgid "Ask %(user)s to <strong>connect you</strong> in:"
+msgstr "%(user)s te pueden <strong>referir</strong>"
+
+#: templates/user-profile.html:99
+#, fuzzy, python-format
+msgid "Ask %(user)s to <strong>learn with you</strong> in:"
+msgstr "%(user)s quieren <strong>aprender</strong>"
+
+#: templates/user-profile.html:133
+msgid "Projects I have done"
+msgstr "Proyectos que he realizado"
+
+#: templates/user-profile.html:137
+msgid "No project information provided."
+msgstr "No se proporcionó información del proyecto"
+
+#: templates/security/_menu_new.html:2
+msgid "Menu"
+msgstr "Menú"
+
+#: templates/security/_menu_new.html:4 templates/security/login_user.html:3
+#: templates/security/send_login.html:13
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: templates/security/_menu_new.html:6
+#: templates/security/forgot_password.html:3
+msgid "Forgot password"
+msgstr "Olvidé mi contraseña"
+
+#: templates/security/change_password.html:3
+#: templates/security/change_password.html:14
+msgid "Change password"
+msgstr "Cambiar contraseña"
+
+#: templates/security/forgot_password.html:14
+msgid "Send password reset instructions"
+msgstr "Enviar instrucciones para reestablecer contraseña"
+
+#: templates/security/login_user.html:14
+#, fuzzy
+msgid "Log in with your email address"
+msgstr "Ingresa con tu correo electrónico"
+
+#: templates/security/login_user.html:27
+#, fuzzy
+msgid "Forgot your password?"
+msgstr "¿Olvidaste tu contraseña?"
+
+#: templates/security/login_user.html:30
+msgid "Don't have an account?"
+msgstr "¿No tienes una cuenta?"
+
+#: templates/security/register_user.html:14
+#, fuzzy
+msgid "Sign up with your email address"
+msgstr "Inscríbete con tu correo electrónico"
+
+#: templates/security/reset_password.html:3
+#: templates/security/reset_password.html:14
+msgid "Reset password"
+msgstr "Reestablecer contraseña"
+
+#: templates/security/send_confirmation.html:3
+#: templates/security/send_confirmation.html:14
+#, fuzzy
+msgid "Send confirmation instructions"
+msgstr "Enviar instrucciones para reestablecer contraseña"
+
+#~ msgid "Terms and Conditions"
+#~ msgstr "Términos y Condiciones"
+
+#~ msgid "Sorry, that file is too big.  Please choose a smaller one."
+#~ msgstr ""
+
+#~ msgid "Sorry, this feature of the site is not yet available."
+#~ msgstr "Lo sentimos, esta característica del sitio aún no está disponible."
+
+#~ msgid "Confirm account"
+#~ msgstr "Confirmar mi cuenta"
+
+#~ msgid "Discourse"
+#~ msgstr ""
+
+#~ msgid "%(user)s posted in Discourse."
+#~ msgstr ""
+
+#~ msgid "Read %(posts_count)s replies on Discourse"
+#~ msgstr ""
+
+#~ msgid "Read more on Discourse"
+#~ msgstr ""
+
+#~ msgid "You can also <strong>browse innovators</strong>!"
+#~ msgstr ""
+
+#~ msgid ""
+#~ msgstr ""
+
+#~ msgid "Search terms"
+#~ msgstr ""
+
+#~ msgid "Mental Health"
+#~ msgstr "Salud Mental"
+
+#~ msgid "Primary Care"
+#~ msgstr "Cuidados Primarios"
+
+#~ msgid "Community Care"
+#~ msgstr "Asistencia Comunitaria"
+
+#~ msgid "Public Health and Population Health"
+#~ msgstr "Salud Pública"
+
+#~ msgid "Acute Health"
+#~ msgstr "Problemas Graves de Salud"
+
+#~ msgid "Health Policy"
+#~ msgstr "Políticas de Salud"
+
+#~ msgid "Commissioning"
+#~ msgstr "Comisionar"
+
+#~ msgid "Agriculture"
+#~ msgstr "Agricultura"
+
+#~ msgid "Arts and culture"
+#~ msgstr "Arte y cultura"
+
+#~ msgid "Business Licensing and Regulation"
+#~ msgstr "Licenciamiento de Negocios y Regulación"
+
+#~ msgid "Consumer rights and issues"
+#~ msgstr "Asuntos y Derechos del Consumidor"
+
+#~ msgid "Defense and Armed Forces"
+#~ msgstr "Fuerzas Armadas y de Defensa"
+
+#~ msgid "Education"
+#~ msgstr "Educación"
+
+#~ msgid "Energy"
+#~ msgstr "Energía"
+
+#~ msgid "Environment"
+#~ msgstr "Medio Ambiente"
+
+#~ msgid "Foreign affairs"
+#~ msgstr "Asuntos Exteriores"
+
+#~ msgid "Government efficiency, transparency and accountability"
+#~ msgstr "Eficiencia gubernamental, transparencia y rendición de cuentas"
+
+#~ msgid "Health"
+#~ msgstr "Salud"
+
+#~ msgid "Housing - Human Rights - Immigration and Citizenship Services"
+#~ msgstr "Vivienda - Derechos Humanos - Servicios de Ciudadanía e Inmigración"
+
+#~ msgid "International Aid and Development"
+#~ msgstr "Ayuda Internacional y Desarrollo"
+
+#~ msgid "Labor"
+#~ msgstr "Trabajo"
+
+#~ msgid "Law and Justice System"
+#~ msgstr "Leyes y Sistema de Justicia"
+
+#~ msgid "Media and Communications"
+#~ msgstr "Medios de Comunicación"
+
+#~ msgid "National Security"
+#~ msgstr "Seguridad Nacional"
+
+#~ msgid "Public safety and Emergencies"
+#~ msgstr "Seguridad Pública y Emergencias"
+
+#~ msgid "Sanitation"
+#~ msgstr "Servicios Sanitarios"
+
+#~ msgid "Science and Innovation"
+#~ msgstr "Ciencia e innovación"
+
+#~ msgid "Social care"
+#~ msgstr "Protección Social"
+
+#~ msgid "Tax and Revenue"
+#~ msgstr "Impuestos"
+
+#~ msgid "Trade and Investment"
+#~ msgstr "Comercio e Inversión"
+
+#~ msgid "Transportation"
+#~ msgstr "Transporte"
+
+#~ msgid "Water and Electricity"
+#~ msgstr "Agua y Electricidad"
+
+#~ msgid "Open Data Policy"
+#~ msgstr "Políticas de Datos Abiertos"
+
+#~ msgid "creating an open data plan and strategy to achieve key goals"
+#~ msgstr ""
+
+#~ msgid "Crafting a clear policy explaining what data to open and how"
+#~ msgstr "Redactar una política pública clara explicando qué datos abrir y cómo"
+
+#~ msgid "Doing public consultation on an open data policy"
+#~ msgstr "Hacer una consulta pública sobre una política de datos abiertos"
+
+#~ msgid "Getting organizational approval for opening data"
+#~ msgstr "Obtener aprobación organizacional para abrir datos"
+
+#~ msgid "Implementing an open data program"
+#~ msgstr "Implementando un programa de datos abiertos"
+
+#~ msgid "operationalizing an open data program in practice"
+#~ msgstr "Ejecución práctica de un programa de datos abiertos"
+
+#~ msgid "Scraping data from my domain"
+#~ msgstr "Extraer datos de mi sitio"
+
+#~ msgid "Making data machine-readable"
+#~ msgstr "Generar datos que sean legibles para computadoras"
+
+#~ msgid "Determining what formats to publish data in"
+#~ msgstr "Determinar en qué formatos publicar datos"
+
+#~ msgid "Determining how to license my data"
+#~ msgstr "Determinar cómo poner licencias a mis datos"
+
+#~ msgid "Deciding data standards to publish data in"
+#~ msgstr "Decidir en qué estándares de datos publicar mis datos"
+
+#~ msgid "Using the right infrastructure for making data available"
+#~ msgstr ""
+
+#~ msgid "Managing an open data project"
+#~ msgstr "Administrar un proyecto de datos abiertos"
+
+#~ msgid "Determining how often datasets should be released and updated"
+#~ msgstr ""
+
+#~ msgid "Ensuring continued data quality and integrity"
+#~ msgstr "Asegurar un nivel continuo en la calidad e integridad de mis datos"
+
+#~ msgid "Accelerating use"
+#~ msgstr "Acelerando el uso"
+
+#~ msgid "responding to what users need and want"
+#~ msgstr "responder a lo que los usuarios quieren y necesitan"
+
+#~ msgid "Identifying and combining other sources of open data to achieve a goal"
+#~ msgstr ""
+
+#~ msgid "Designing a data collaborative"
+#~ msgstr "Diseñar una alianza público-privada para compartir datos"
+
+#~ msgid "Measuring Impact"
+#~ msgstr "Midiendo el impacto"
+
+#~ msgid "assessing effectiveness"
+#~ msgstr "evaluando la efectividad"
+
+#~ msgid "Monitoring how my data is being used"
+#~ msgstr "Monitorear en qué forma se están usando mis datos"
+
+#~ msgid "Measuring the economic and/or social impact of opening up data"
+#~ msgstr "Medir el impacto económico y/o social de abrir datos"
+
+#~ msgid "Scoping the Problem"
+#~ msgstr "Definiendo el alcance del problema"
+
+#~ msgid "defining the problem"
+#~ msgstr "definiendo el problema"
+
+#~ msgid "Defining and expressing the problem addressed by the prize."
+#~ msgstr "Definir y expresar el problema que el concurso busca resolver."
+
+#~ msgid "Developing metrics to measure progress"
+#~ msgstr "Desarrollar indicadores para medir el progreso."
+
+#~ msgid "Designing for a Successful Prize"
+#~ msgstr "Diseñando para un premio exitoso"
+
+#~ msgid "Deciding if a prize is the right tool"
+#~ msgstr "Decidiendo si un premio es la herramienta adecuada"
+
+#~ msgid "Determining whether a prize or a grand challenge is optimal"
+#~ msgstr "Determinar si un premio o un gran desafío es óptimo"
+
+#~ msgid "Deciding whether to use financial or non-financial incentives"
+#~ msgstr "Decidir si usar incentivos económicos o no económicos."
+
+#~ msgid "Setting the value of a prize"
+#~ msgstr "Establecer el valor económico de un premio."
+
+#~ msgid "Identifying the Right Audience"
+#~ msgstr "Identificando a la Audiencia Correcta"
+
+#~ msgid "targeting the right participants"
+#~ msgstr "identificando a los participantes correctos"
+
+#~ msgid "Identifying would-be participating innovators"
+#~ msgstr "Identificar a posibles innovadores para que participen."
+
+#~ msgid "Assessing the potential costs involved for them in participating"
+#~ msgstr "Evaluar los costos que involucra la participación de los innovadores."
+
+#~ msgid "Mechanics"
+#~ msgstr "Mecánica"
+
+#~ msgid "running a prize-backed challenge"
+#~ msgstr "ejecutando un concurso premiado"
+
+#~ msgid "Funding a prize-backed challenge"
+#~ msgstr "Financiando un concurso premiado"
+
+#~ msgid "Creating a plan for running the prize with defined milestones"
+#~ msgstr "Crear un plan para ejecutar el premio con hitos definidos"
+
+#~ msgid "Deciding how long the prize should run"
+#~ msgstr "Decidir cuánto tiempo debe durar el concurso"
+
+#~ msgid "Developing a communication strategy to get the word out"
+#~ msgstr ""
+
+#~ msgid "Choosing from the tools available to run a prize-backed challenge"
+#~ msgstr ""
+
+#~ msgid "Judging"
+#~ msgstr "Juzgando"
+
+#~ msgid "judging a prize"
+#~ msgstr "Juzgando un premio"
+
+#~ msgid "Designing assessment criteria"
+#~ msgstr "Diseñar los criterios de evaluación"
+
+#~ msgid "Selecting judges"
+#~ msgstr "Seleccionar a los jueces"
+
+#~ msgid "Legal Concerns"
+#~ msgstr "Inquietudes Legales"
+
+#~ msgid "overcoming legal concerns"
+#~ msgstr "superando las inquietudes legales"
+
+#~ msgid "Determining ownership and copyright"
+#~ msgstr "Determinar la propiedad intelectual y los derechos de autor"
+
+#~ msgid "Navigating governmental endorsement and privacy concerns"
+#~ msgstr ""
+
+#~ msgid "Implementation"
+#~ msgstr "Implementación"
+
+#~ msgid "what to do after a challenge"
+#~ msgstr "qué hacer después de un concurso"
+
+#~ msgid "Translating winning entries into well-developed solutions"
+#~ msgstr "Traducir propuestas ganadoras en soluciones bien desarrolladas"
+
+#~ msgid "Coming soon"
+#~ msgstr "Próximamente"
+
+#~ msgid "Agile"
+#~ msgstr "Ágil"
+
+#~ msgid "Tasks and Goals"
+#~ msgstr "Tareas y Metas"
+
+#~ msgid "Identifying a compelling goal for a citizen science project"
+#~ msgstr "Identificar una meta convincente para un proyecto de ciencia ciudadana"
+
+#~ msgid "Identifying and defining the tasks for participants to do"
+#~ msgstr "Identificar y definir las tareas que deben realizar los participantes"
+
+#~ msgid "Articulating the intended outcomes of a project"
+#~ msgstr "Articular los resultados previstos de un proyecto"
+
+#~ msgid "Articulating how the tasks will advance a research field"
+#~ msgstr ""
+
+#~ msgid "Defining the success of a project"
+#~ msgstr "Definir el éxito de un proyecto"
+
+#~ msgid "Measuring and evaluating the success of a project"
+#~ msgstr "Medir y evaluar el éxito de un proyecto"
+
+#~ msgid "Defining a project in terms of time required and geographic range"
+#~ msgstr ""
+
+#~ msgid "Identifying funding opportunities for a project"
+#~ msgstr "Identificar oportunidades de financiamiento para un proyecto."
+
+#~ msgid "Incentives and Motivation"
+#~ msgstr "Incentivos y Motivación"
+
+#~ msgid "developing incentives to motivate participation"
+#~ msgstr "desarrollando incentivos para motivar la participación. "
+
+#~ msgid "Engaging with and/or creating a community for participants."
+#~ msgstr ""
+
+#~ msgid "Retaining participants"
+#~ msgstr "Retener a los participantes"
+
+#~ msgid "Addressing variations and skew in participation"
+#~ msgstr "Lidiar con variaciones y sesgos en la participación"
+
+#~ msgid "Scaling up participation"
+#~ msgstr "Hacer crecer la participación"
+
+#~ msgid "Identifying collaborators around the project"
+#~ msgstr "Identificar colaboradores para el proyecto"
+
+#~ msgid "Defining and developing gamification in projects"
+#~ msgstr "Definir y desarrollar procesos de gamificación en proyectos"
+
+#~ msgid "Attributing contributions to the relevant parties"
+#~ msgstr "Atribuir las contribuciones que han hecho las partes relevantes"
+
+#~ msgid "Training"
+#~ msgstr "Entrenamiento"
+
+#~ msgid "Preparing individuals to participate in a project"
+#~ msgstr "Capacitar individuos para que participen en un proyecto"
+
+#~ msgid "Developing an FAQ for participants to reference throughout the process"
+#~ msgstr ""
+
+#~ msgid "Assessing data quality"
+#~ msgstr "Evaluar la calidad de los datos"
+
+#~ msgid "Designing or adapting protocols to assure high quality data"
+#~ msgstr ""
+
+#~ msgid "Platforms and Tools"
+#~ msgstr "Plataformas y Herramientas"
+
+#~ msgid "deciding upon and using citizen science platforms and tools"
+#~ msgstr "decidir y usar plataformas y herramientas de ciencia ciudadana"
+
+#~ msgid "Interpreting data being collected before the project has been completed"
+#~ msgstr ""
+
+#~ msgid "Interpreting data collected when the project has been completed"
+#~ msgstr "Interpretar los datos recolectados cuando el proyecto ha finalizado"
+
+#~ msgid "Archiving data"
+#~ msgstr "Archivar los datos"
+
+#~ msgid "Decision Making"
+#~ msgstr "Toma de decisiones"
+
+#~ msgid "using input gained through citizen science to drive decision making"
+#~ msgstr ""
+
+#~ msgid "Identifying the societal relevance of your project"
+#~ msgstr "Identificar la importancia social de un proyecto"
+
+#~ msgid "Legal Questions"
+#~ msgstr "Cuestiones Legales"
+
+#~ msgid "legal concerns and barriers related to citizen science initiatives"
+#~ msgstr ""
+
+#~ msgid "Identifying and mitigating privacy concerns relating to data collected"
+#~ msgstr ""
+
+#~ msgid "Ensuring COPPA compliance in projects featuring minors"
+#~ msgstr ""
+
+#~ msgid "Asking people to license their contributions"
+#~ msgstr "Pedir a las personas que licencien sus contribuciones"
+
+#~ msgid "Licensing data that is going to be published"
+#~ msgstr "Elegir la licencia que debo aplicar cuando publico datos"
+
+#~ msgid "Drafting a data policy"
+#~ msgstr "Redactar una política de datos"
+
+#~ msgid "Drafting a privacy policy"
+#~ msgstr "Redactar una política de privacidad"
+
+#~ msgid "Communicating Results and Sustaining Projects"
+#~ msgstr "Comunicando Resultados y Administrando Proyectos Sostenibles"
+
+#~ msgid "Communicating results and milestones to participants"
+#~ msgstr "Comunicar resultados e hitos a los participantes"
+
+#~ msgid "Identifying avenues for publishing results"
+#~ msgstr "Identificar los medios adecuados para publicar los resultados"
+
+#~ msgid "Determining when to publish results"
+#~ msgstr "Determinar cuándo publicar los resultados"
+
+#~ msgid "Ensuring sustainability of project management"
+#~ msgstr "Asegurar la sustentabilidad en la administración del proyecto"
+
+#~ msgid "Identifying funding opportunities to sustain a project"
+#~ msgstr ""
+
+#~ msgid "Nudges"
+#~ msgstr "Nudges"
+
+#~ msgid "Partnerships"
+#~ msgstr "Alianzas"
+
+#~ msgid "Data Collection"
+#~ msgstr "Recolección de datos"
+
+#~ msgid "data collection"
+#~ msgstr "recolección de datos"
+
+#~ msgid "Creating incentives for people to provide data."
+#~ msgstr "Crear incentivos para que las personas proporcionen datos"
+
+#~ msgid "Data Governance"
+#~ msgstr "Gobernanza de datos"
+
+#~ msgid "data governance"
+#~ msgstr "Gobernanza de datos"
+
+#~ msgid "Storing data securely."
+#~ msgstr "Almacenar datos de forma segura."
+
+#~ msgid "Crafting an information governance policy."
+#~ msgstr "Redactar una política de gobernanza de datos."
+
+#~ msgid "Drawing Insights from Data"
+#~ msgstr "Obteniendo ideas de los datos"
+
+#~ msgid "drawing insights from data"
+#~ msgstr "obteniendo ideas de los datos"
+
+#~ msgid "Formulating and test a hypothesis using data."
+#~ msgstr "Formular y examinar una hipótesis usando datos."
+
+#~ msgid "Designing an experiment to test a data-driven hypothesis."
+#~ msgstr "Diseñar un experimento para poner a prueba una hipótesis."
+
+#~ msgid "Interpreting and communicating what data says."
+#~ msgstr "Interpretar y comunicar lo que dicen los datos."
+
+#~ msgid "Identifying goals and participants"
+#~ msgstr "Identificando metas y participantes"
+
+#~ msgid "Implementing a community engagement strategy"
+#~ msgstr "Implementando una estrategia de participación comunitaria"
+
+#~ msgid "Developing briefing materials and information to inform engagement."
+#~ msgstr ""
+
+#~ msgid "Using multiple dialog methods to engage stakeholders."
+#~ msgstr ""
+
+#~ msgid "Planning and delivering face-to-face deliberation."
+#~ msgstr "Planear e implementar una deliberación presencial."
+
+#~ msgid "Planning and delivering a deliberative poll."
+#~ msgstr "Planear e implementar una encuesta deliberativa."
+
+#~ msgid "Planning and delivering a citizen jury."
+#~ msgstr "Planear e implementar un jurado ciudadano."
+
+#~ msgid "Planning and delivering a participatory budgeting process."
+#~ msgstr "Planear e implementar un proceso de presupuesto participativo."
+
+#~ msgid "Planning and delivering a charrette or scenario-planning exercise."
+#~ msgstr "Planear e implementar un ejercicio de planeación de escenarios."
+
+#~ msgid "Ensuring accessibility of the engagement activity."
+#~ msgstr "Asegurar la accesibilidad de la actividad de participación. "
+
+#~ msgid "Using online and digital channels to engage stakeholders"
+#~ msgstr ""
+
+#~ msgid "Using social media, digital and online tools to conduct surveys."
+#~ msgstr ""
+
+#~ msgid "Planning and delivering open space technology."
+#~ msgstr "Planear e implementar tecnología de espacios abiertos."
+
+#~ msgid "Using digital and online tools to provide feedback to stakeholders."
+#~ msgstr ""
+
+#~ msgid "Measuring, evaluating and providing feedback"
+#~ msgstr "Midiendo, evaluando y proporcionando retroalimentación "
+
+#~ msgid "Transforming my organisation"
+#~ msgstr "Transformando mi organización"
+
+#~ msgid "Lab Creation and Vision"
+#~ msgstr "Creación de laboratorios y visión"
+
+#~ msgid "What you can share about launching a government innovation lab."
+#~ msgstr ""
+
+#~ msgid "Defining the different products and services my Lab will deliver"
+#~ msgstr ""
+
+#~ msgid "Articulating a clear theory of change for my Lab"
+#~ msgstr "Articular una teoría de cambio clara para mi laboratorio "
+
+#~ msgid "Lab Operations"
+#~ msgstr "Operaciones del laboratorio"
+
+#~ msgid "Lab Experimentation and Methodology"
+#~ msgstr "Experimentación y Metodología del Laboratorio"
+
+#~ msgid "Defining metrics for my Lab to demonstrate its impact"
+#~ msgstr "Definir las métricas para que mi laboratorio demuestre su impacto"
+
+#~ msgid "Selecting and implementing the methods that my Lab will promote"
+#~ msgstr ""
+
+#~ msgid "Training others in Lab methods and tools"
+#~ msgstr "Capacitar a otros en las metodologías y herramientas del laboratorio"
+
+#~ msgid "Managing a Lab project using an agile development approach"
+#~ msgstr ""
+
+#~ msgid "Staffing and Resources"
+#~ msgstr "Personal y Recursos"
+
+#~ msgid "What you can share about managing lab staff and budgets."
+#~ msgstr ""
+
+#~ msgid "Effectively recruiting a group of early champions to support the Lab"
+#~ msgstr ""
+
+#~ msgid "Capturing, Leveraging and Communicating Results"
+#~ msgstr "Captando, aprovechando y comunicando resultados"
+
+#~ msgid "Determining the Crowd"
+#~ msgstr "Definiendo el alcance de la multitud"
+
+#~ msgid "What can you share about identifying, enrolling, and developing a crowd"
+#~ msgstr ""
+
+#~ msgid "Encouraging ongoing participation"
+#~ msgstr "Alentar una participación continua."
+
+#~ msgid "Determining the Activity"
+#~ msgstr "Determinando la Actividad"
+
+#~ msgid "What can you share about the type of activities the crowd could perform"
+#~ msgstr ""
+
+#~ msgid "Determining a Successful Crowdsourcing Strategy"
+#~ msgstr "Determinando una estrategia exitosa de crowdsourcing"
+
+#~ msgid "Assessing the effectiveness of using crowdsourcing"
+#~ msgstr "Evaluar la efectividad de utilizar crowdsourcing."
+
+#~ msgid "Providing the Right Incentives"
+#~ msgstr "Proporcionando los incentivos correctos"
+
+#~ msgid "Defining the scope of the crowd’s participation"
+#~ msgstr "Definir el alcance de la participación de la multitud"
+
+#~ msgid "Providing feedback for participation"
+#~ msgstr "Proveer retroalimentación por su participación"
+
+#~ msgid "Determining whether the use of a competition is beneficial"
+#~ msgstr "Determinar si el uso de una competencia es beneficioso"
+
+#~ msgid "Determining whether the use of reputation systems is beneficial"
+#~ msgstr "Determinar si el uso de sistemas de reputación es beneficioso"
+
+#~ msgid "Using altruistic or community building incentives"
+#~ msgstr "Usar incentivos altruistas o de construcción de comunidad"
+
+#~ msgid "Designing recreational incentives (i.e. gamification)"
+#~ msgstr "Diseñar incentivos recreativos (e.g. gamificación)"
+
+#~ msgid "Identifying which particular incentive is working and why"
+#~ msgstr "Identificar qué incentivo particular funciona y por qué"
+
+#~ msgid "Implementation and Tools"
+#~ msgstr "Implementación y herramientas"
+
+#~ msgid "Choosing a platform to do the crowdsourcing project"
+#~ msgstr "Escoger una plataforma para llevar a cabo el proyecto de crowdsourcing"
+
+#~ msgid "Developing a communication strategy to target the right audience"
+#~ msgstr ""
+
+#~ msgid "Connecting members of the crowd to each other when appropriate"
+#~ msgstr "Conectar a los miembros de la multitud entre sí cuando sea apropiado"
+
+#~ msgid "Preparing to utilize or implement the output of the crowd"
+#~ msgstr "Utilizar o implementar las contribuciones de la multitud "
+
+#~ msgid "Quality Control Mechanisms"
+#~ msgstr "Mecanismos de Control de Calidad"
+
+#~ msgid "Ensuring high-quality and accurate participation from the crowd"
+#~ msgstr ""
+
+#~ msgid "Ethical and Legal Concerns"
+#~ msgstr "Inquietudes Legales"
+
+#~ msgid "Determining ownership and copyright of crowd contributions"
+#~ msgstr ""
+
+#~ msgid "Nudges: RCTs"
+#~ msgstr "Nudges: ECA"
+
+#~ msgid "Setting Up an Evaluation"
+#~ msgstr "Preparación de una evaluación"
+
+#~ msgid "Identifying an empirically testable question."
+#~ msgstr "Identificar una interrogante empíricamente evaluable"
+
+#~ msgid "Identifying data to evaluate using the evaluation model"
+#~ msgstr "Identificar los datos a evaluar mediante el modelo de evaluación"
+
+#~ msgid "Embedding evaluation within the program without undue disruption"
+#~ msgstr "Integrar la evaluación en el programa sin alterarlo excesivamente"
+
+#~ msgid "Designing and Implementing an Evaluation"
+#~ msgstr "Diseño e implementación de una evaluación"
+
+#~ msgid "How to design and launch an evaluation."
+#~ msgstr "Cómo diseñar e iniciar una evaluación."
+
+#~ msgid "Using randomization to create a robust control group for comparison"
+#~ msgstr ""
+
+#~ msgid "Ensuring that evaluation is statistically significant"
+#~ msgstr "Asegurar que la evaluación sea estadísticamente significativa"
+
+#~ msgid "Working with small sample sizes and imperfect conditions"
+#~ msgstr "Trabajar con tamaños muestrales pequeños y en condiciones imperfectas"
+
+#~ msgid "Choosing which group gets which version of the intervention"
+#~ msgstr ""
+
+#~ msgid "Determining the right method for analysing the results"
+#~ msgstr "Determinar el método adecuado para analizar los resultados"
+
+#~ msgid "Writing a credible plan for analysing the data in advance of launching"
+#~ msgstr ""
+
+#~ msgid "Monitoring data quality throughout the trial"
+#~ msgstr "Monitorear la calidad de los datos durante todo el ensayo"
+
+#~ msgid "Handling data safely and securely"
+#~ msgstr "Gestionar datos de forma segura "
+
+#~ msgid "Measuring impact"
+#~ msgstr "Midiendo el impacto"
+
+#~ msgid "Cleaning the data that comes in"
+#~ msgstr "Gobernanza de datos"
+
+#~ msgid "Analyzing the results and performing robustness checks"
+#~ msgstr "Analizar los resultados y verificar su robustez"
+
+#~ msgid "I can connect others"
+#~ msgstr "Puedo referir otras personas"
+
+#~ msgid "I can do it"
+#~ msgstr "Puedo hacerlo"
+
+#~ msgid "I can explain it"
+#~ msgstr "Puedo explicarlo"
+
+#~ msgid "I want to learn"
+#~ msgstr "Quiero aprender"
+
+#~ msgid "Non Profit"
+#~ msgstr "Sin fines de lucro"
+
+#~ msgid "Government"
+#~ msgstr "Gobierno"
+
+#~ msgid "Private Sector"
+#~ msgstr "Sector Privado"
+
+#~ msgid "Other"
+#~ msgstr "Otro"
+
+#~ msgid "Academia"
+#~ msgstr "Academia"
+
+#: templates/_network-viz2.html:52
+msgid "Wants to Learn"
+msgstr "Quiere aprender"
+
+#: templates/_network-viz2.html:53
+msgid "Can Explain"
+msgstr "Lo puede explicar"
+
+#: templates/_network-viz2.html:54
+msgid "Can Connect Others"
+msgstr "Te puede referir a otros"
+
+#: templates/_network-viz2.html:55
+msgid "Can Do It"
+msgstr "Lo puede hacer"
+
+#: templates/activity.html:174
+msgid ""
+"<a href=\"./my-expertise\">Answer more questions</a> about your expertise"
+" to get matched with innovators you can learn the most from!"
+msgstr "<a href=\"./my-expertise\">Responde más preguntas</a> sobre tus conocimientos y habilidades para conectarte con las y los innovadores de los cuales puedes aprender más."
+
+#: templates/user-profile.html:29
+msgid "Edit Profile"
+msgstr "Editar Perfil"

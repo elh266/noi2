@@ -1,0 +1,29 @@
+{% extends "__base_ui__.html" %}
+
+{% block content %}
+
+<h1 class="b-header">{{ gettext('Settings') }}</h1>
+
+<div class="b-form">
+  <p>
+    <a href="{{ url_for_security('change_password') }}" class="b-button">{{ gettext('Change Password') }}</a>
+  </p>
+
+  <p>
+    <a href="{{ url_for('views.activity') }}" class="b-button" data-tutorial-step="1">{{ gettext("Reset Tutorial") }}</a>
+  </p>
+  <form method="POST" action="{{ url_for('views.change_locale') }}" class="e-onboarding-form" data-submit-on-change>
+    {{ change_locale_form.hidden_tag() }}
+
+    {{ change_locale_form.locale.label() }}
+    <div class="e-dropdown">
+      {{ change_locale_form.locale() }}
+    </div>
+
+    <noscript>
+      <input class="b-button" type="submit" value="{{ gettext('Change Language') }}">
+    </noscript>
+
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,278 @@
+.b-homepage-panel {
+    height: 90vh;
+    background-color: $gray-60;
+
+    .e-govlab-logo {
+        width: 160px;
+    }
+
+    h1, h2, h3, p {
+        margin: 0;
+    }
+}
+
+.b-branding-section {
+    background-color: $blue;
+
+    .e-top-links {
+        height: 8vh;
+
+        .b-dropdown {
+            width: 130px;
+            background-color: transparent;
+            display: inline-block;
+
+            select { background-color: transparent; }
+        }
+
+        .e-login {
+            float: right;
+            padding: 10px 15px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: $white;
+        }
+    }
+
+    .e-noi-logo {
+        text-align: center;
+        height: 25.4vh;
+        margin-top: 3vh;
+
+        img {
+            width: 80%;
+            max-width: 300px;
+        }
+    }
+
+    .e-tagline {
+        font-weight: 400;
+        text-align: center;
+        font-size: 20px;
+        line-height: 1.3;
+        color: $white;
+        margin: 40px 20px;
+        height: 13vh;
+    }
+
+    .e-header-icon {
+        // margin-top: 20px;
+        text-align: center;
+        color: $white;
+        i {
+            font-size: 50px;
+        }
+    }
+
+    .b-button {
+        width: calc(100% - 40px);
+        margin: 0 20px;
+        color: $white;
+    }
+
+    footer {
+        background-color: $gray-10;
+        text-align: center;
+        padding: 15px;
+        height: 13vh;
+        margin-top: 6.5vh;
+    }
+}
+
+.b-categories {
+    background-color: $blue;
+
+
+    .e-category-intro {
+        text-align: center;
+        background-color: $gray-10;
+        color: $white;
+        font-size: 20px;
+        padding: 5vh 20px 0;
+        height: 30vh;
+    }
+
+    .e-category-slider {
+        width: 100%;
+        background-color: $gray-10;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        overflow-y: hidden;
+        height: 60vh;
+
+    }
+
+    .e-category-wrapper {
+        white-space: nowrap;
+        width: auto;
+    }
+
+    .e-category-panel {
+        display: inline-block;
+        width: 100%;
+        white-space: normal;
+        text-align: center;
+        font-size: 30px;
+        text-transform: uppercase;
+        font-weight: 600;
+        height: 60vh;
+        position: relative;
+
+        p {
+            color: $white;
+            margin-top: 15vh;
+            vertical-align: middle;
+        }
+    }
+
+    .e-category-panel {
+        &:after {
+            content: "";
+            opacity: 0.1;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: 1;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        &.m-crowdsourcing:after {
+            background-image: url($path-to-static + '/img/category-crowdsourcing.png');
+            background-position: center -12vh;
+        }
+        &.m-data-science:after {
+            background-image: url($path-to-static + '/img/category-data-science.png');
+            background-position: center -12vh;
+        }
+        &.m-community-engagement:after {
+            background-image: url($path-to-static + '/img/category-community-engagement.png');
+        }
+        &.m-lab-design:after {
+            background-image: url($path-to-static + '/img/category-lab-design.png');
+            background-position: center -12vh;
+        }
+        &.m-citizen-science:after {
+            background-image: url($path-to-static + '/img/category-citizen-science.png');
+            background-position: center -19vh;
+            background-size: 120%;
+        }
+        &.m-open-data:after {
+            background-image: url($path-to-static + '/img/category-open-data.png');
+            background-position: center -13vh;
+            background-size: 120%;
+        }
+        &.m-prizes:after {
+            background-image: url($path-to-static + '/img/category-prizes.png');
+            background-position: center -19vh;
+            background-size: 120%;
+        }
+        &.m-rct:after {
+            background-image: url($path-to-static + '/img/category-rct.png');
+            background-position: center -3vh;
+        }
+    }
+}
+
+.b-screenshots {
+    position: relative;
+    overflow: hidden;
+    height: 98vh;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#048ab3+0,048ab3+50,333333+50,4c4c4c+100 */
+    background: rgb(4,138,179); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(4,138,179,1) 0%, rgba(4,138,179,1) 50%, rgba(51,51,51,1) 50%, rgba(76,76,76,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(4,138,179,1)), color-stop(50%,rgba(4,138,179,1)), color-stop(50%,rgba(51,51,51,1)), color-stop(100%,rgba(76,76,76,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(4,138,179,1) 0%,rgba(4,138,179,1) 50%,rgba(51,51,51,1) 50%,rgba(76,76,76,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(4,138,179,1) 0%,rgba(4,138,179,1) 50%,rgba(51,51,51,1) 50%,rgba(76,76,76,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(4,138,179,1) 0%,rgba(4,138,179,1) 50%,rgba(51,51,51,1) 50%,rgba(76,76,76,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(4,138,179,1) 0%,rgba(4,138,179,1) 50%,rgba(51,51,51,1) 50%,rgba(76,76,76,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#048ab3', endColorstr='#4c4c4c',GradientType=0 ); /* IE6-9 */
+
+
+    .e-screenshot {
+        height: 90vh;
+        position: absolute;
+        transform: rotate(-17deg);
+
+
+        &.m-left {
+            left: -200px;
+            top: -50px;
+
+        }
+
+    }
+
+    .e-blurb {
+        width: 50%;
+        font-size: 16px;
+        color: $white;
+        padding: 20px;
+        position: absolute;
+        text-align: right;
+        right: 20px;
+
+        &.m-top { top: 20px; }
+        &.m-bottom {
+            top: 400px;
+            width: 56%;
+            @include breakpoint($desktop) {
+                top: 500px;
+            }
+
+        }
+    }
+
+
+}
+
+.b-final-message {
+    background-color: $gray-80;
+    padding: 50px 20px;
+    height: 30vh;
+
+    .e-message {
+        font-size: 22px;
+        color: $white;
+        text-align: center;
+    }
+}
+
+.b-partners {
+    text-align: center;
+    background-color: $purple;
+    padding: 20px;
+    height: 80vh;
+
+    p {
+        color: $white;
+        margin: 30px;
+        font-size: 18px;
+    }
+
+    .e-flags {
+        margin: 30px 0;
+    }
+
+    .e-flag {
+        width: 60px;
+        height: 60px;
+        margin: 5px;
+        background-color: $white;
+        display: inline-block;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .b-button {
+        margin-bottom: 20px;
+        color: $white;
+    }
+}
+
+.b-sg-landing-page .b-slider.m-mobile-screens .b-slide {
+background-color: red;
+}
